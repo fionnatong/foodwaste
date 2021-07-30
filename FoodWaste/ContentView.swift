@@ -10,14 +10,18 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Hello, world!")
-                    .padding()
-                
-                NavigationLink(destination: FoodShelfView()) {
-                    Text("Go to Food Shelf")
+            ZStack {
+                Color.secondary
+                VStack {
+                    Text("Hello, world!")
+                        .padding()
+                    
+                    NavigationLink(destination: FoodShelfView()) {
+                        Text("Go to Food Shelf")
+                    }
                 }
             }
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }

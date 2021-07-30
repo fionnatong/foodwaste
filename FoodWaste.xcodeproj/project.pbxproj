@@ -3,23 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A79C48426B3A45D007D6D4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */; };
+		6A79C4A826B3C958007D6D4D /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4A726B3C958007D6D4D /* FoodItemModel.swift */; };
+		6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */; };
+		6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */; };
+		6AEC265D26B40522005EF1BE /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC265C26B40522005EF1BE /* DesignSystem.swift */; };
 		6AEECB7626B1436B00EDFD5D /* FoodWasteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */; };
 		6AEECB7826B1436B00EDFD5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEECB7726B1436B00EDFD5D /* ContentView.swift */; };
 		6AEECB7A26B1436C00EDFD5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEECB7926B1436C00EDFD5D /* Assets.xcassets */; };
 		6AEECB7D26B1436C00EDFD5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEECB7C26B1436C00EDFD5D /* Preview Assets.xcassets */; };
+		E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodWaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6A79C4A726B3C958007D6D4D /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
+		6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfViewModel.swift; sourceTree = "<group>"; };
+		6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfView.swift; sourceTree = "<group>"; };
+		6AEC265C26B40522005EF1BE /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		6AEECB7226B1436B00EDFD5D /* FoodWaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodWaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodWasteApp.swift; sourceTree = "<group>"; };
 		6AEECB7726B1436B00EDFD5D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6AEECB7926B1436C00EDFD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEECB7C26B1436C00EDFD5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AEECB7E26B1436C00EDFD5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.release.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.release.xcconfig"; sourceTree = "<group>"; };
+		B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.debug.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +41,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0066BE396E01D566BA9BCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */,
+				9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6A79C4A926B3C9A2007D6D4D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6A79C4AA26B3CA00007D6D4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6A79C4A726B3C958007D6D4D /* FoodItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6AEECB6926B1436B00EDFD5D = {
 			isa = PBXGroup;
 			children = (
 				6AEECB7426B1436B00EDFD5D /* FoodWaste */,
 				6AEECB7326B1436B00EDFD5D /* Products */,
+				5A0066BE396E01D566BA9BCB /* Pods */,
+				CCDB3C84F95B926534C386A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,10 +94,15 @@
 		6AEECB7426B1436B00EDFD5D /* FoodWaste */ = {
 			isa = PBXGroup;
 			children = (
+				6A79C4AA26B3CA00007D6D4D /* Model */,
+				6A79C4A926B3C9A2007D6D4D /* ViewModel */,
 				6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */,
 				6AEECB7726B1436B00EDFD5D /* ContentView.swift */,
+				6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */,
+				6AEC265C26B40522005EF1BE /* DesignSystem.swift */,
 				6AEECB7926B1436C00EDFD5D /* Assets.xcassets */,
 				6AEECB7E26B1436C00EDFD5D /* Info.plist */,
+				6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */,
 				6AEECB7B26B1436C00EDFD5D /* Preview Content */,
 			);
 			path = FoodWaste;
@@ -69,6 +116,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CCDB3C84F95B926534C386A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,9 +131,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AEECB8126B1436C00EDFD5D /* Build configuration list for PBXNativeTarget "FoodWaste" */;
 			buildPhases = (
+				E8530621D2D53F197B39167E /* [CP] Check Pods Manifest.lock */,
 				6AEECB6E26B1436B00EDFD5D /* Sources */,
 				6AEECB6F26B1436B00EDFD5D /* Frameworks */,
 				6AEECB7026B1436B00EDFD5D /* Resources */,
+				941210E42AB8D9DFA091718D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,18 +185,65 @@
 			files = (
 				6AEECB7D26B1436C00EDFD5D /* Preview Assets.xcassets in Resources */,
 				6AEECB7A26B1436C00EDFD5D /* Assets.xcassets in Resources */,
+				6A79C48426B3A45D007D6D4D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		941210E42AB8D9DFA091718D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodWaste/Pods-FoodWaste-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodWaste/Pods-FoodWaste-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodWaste/Pods-FoodWaste-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8530621D2D53F197B39167E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodWaste-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6AEECB6E26B1436B00EDFD5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */,
 				6AEECB7826B1436B00EDFD5D /* ContentView.swift in Sources */,
+				6A79C4A826B3C958007D6D4D /* FoodItemModel.swift in Sources */,
+				6AEC265D26B40522005EF1BE /* DesignSystem.swift in Sources */,
 				6AEECB7626B1436B00EDFD5D /* FoodWasteApp.swift in Sources */,
+				6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +368,7 @@
 		};
 		6AEECB8226B1436C00EDFD5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -286,6 +391,7 @@
 		};
 		6AEECB8326B1436C00EDFD5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
