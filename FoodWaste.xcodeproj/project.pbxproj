@@ -49,7 +49,7 @@
 		8F33A41926B7A28300B9C01C /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		8F33A42026B7CA3100B9C01C /* AddFoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItem.swift; sourceTree = "<group>"; };
 		8F33A42426B7DB3C00B9C01C /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
-		8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.release.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.release.xcconfig"; sourceTree = "<group>"; };
 		B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.debug.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
