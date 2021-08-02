@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: Int? = nil
+    
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.secondary
+        VStack {
+            NavigationView {
                 VStack {
-                    Text("Hello, world!")
-                        .padding()
-                    
-                    NavigationLink(destination: FoodShelfView()) {
-                        Text("Go to Food Shelf")
-                    }
-                }
+                    NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
+                    Button("I am donor") {
+                        self.selection = 0
+                    }.buttonStyle(PrimaryButtonStyle()).padding(.bottom, 24)
+                    NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
+                    Button("I am receiver") {
+                        self.selection = 1
+                    }.buttonStyle(PrimaryButtonStyle())
+                }.navigationTitle("Choose your role")
             }
-            .edgesIgnoringSafeArea(.top)
         }
     }
 }
