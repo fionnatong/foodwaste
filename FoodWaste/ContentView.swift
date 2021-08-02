@@ -22,14 +22,38 @@ struct ContentView: View {
                         .font(CustomFont.headerTwo)
                         .padding(.top, 70)
                         .padding(.bottom, 24)
-                    NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
-                    Button("I am donor") {
-                        self.selection = 0
-                    }.buttonStyle(PrimaryButtonStyle()).padding(.bottom, 24)
-                    NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
-                    Button("I am receiver") {
-                        self.selection = 1
-                    }.buttonStyle(PrimaryButtonStyle())
+//                    NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
+//                    Button("I am donor") {
+//                        self.selection = 0
+//                    }.buttonStyle(PrimaryButtonStyle()).padding(.bottom, 24)
+//                    NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
+//                    Button("I am receiver") {
+//                        self.selection = 1
+//                    }.buttonStyle(PrimaryButtonStyle())
+                    
+                    HStack {
+                        NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
+                        Button(action: {self.selection = 0}) {
+                            VStack{
+                                Text("Donate Food")
+                                    .font(CustomFont.bodyMedium)
+                                Text("As a business owner")
+                                    .font(CustomFont.bodyRegular)
+                            }.padding(16)
+                        }
+                        .buttonStyle(CardButtonStyle())
+                        
+                        NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
+                        Button(action: {self.selection = 1}) {
+                            VStack{
+                                Text("Receive Food")
+                                    .font(CustomFont.bodyMedium)
+                                Text("As an organisation")
+                                    .font(CustomFont.bodyRegular)
+                            }.padding(16)
+                        }
+                        .buttonStyle(CardButtonStyle())
+                    }
                 }
                 .padding(.top, 100)
                 .frame(maxHeight: .infinity, alignment: .topLeading)
