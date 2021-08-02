@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A79C48426B3A45D007D6D4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */; };
 		6A79C4A826B3C958007D6D4D /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4A726B3C958007D6D4D /* FoodItemModel.swift */; };
 		6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */; };
 		6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */; };
@@ -16,12 +15,16 @@
 		6AEECB7826B1436B00EDFD5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEECB7726B1436B00EDFD5D /* ContentView.swift */; };
 		6AEECB7A26B1436C00EDFD5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEECB7926B1436C00EDFD5D /* Assets.xcassets */; };
 		6AEECB7D26B1436C00EDFD5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEECB7C26B1436C00EDFD5D /* Preview Assets.xcassets */; };
+		8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A3FE26B79DE700B9C01C /* OnboardingComplete.swift */; };
+		8F33A41526B7A18400B9C01C /* WorkSans-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F33A41326B7A0FC00B9C01C /* WorkSans-Italic-VariableFont_wght.ttf */; };
+		8F33A41726B7A18700B9C01C /* WorkSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F33A41426B7A0FC00B9C01C /* WorkSans-VariableFont_wght.ttf */; };
+		8F33A41A26B7A28300B9C01C /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A41926B7A28300B9C01C /* CustomFont.swift */; };
+		8F8F049326B77B4A00EE056D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */; };
 		E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodWaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6A79C4A726B3C958007D6D4D /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfViewModel.swift; sourceTree = "<group>"; };
 		6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfView.swift; sourceTree = "<group>"; };
@@ -32,6 +35,11 @@
 		6AEECB7926B1436C00EDFD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEECB7C26B1436C00EDFD5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AEECB7E26B1436C00EDFD5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F33A3FE26B79DE700B9C01C /* OnboardingComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingComplete.swift; sourceTree = "<group>"; };
+		8F33A41326B7A0FC00B9C01C /* WorkSans-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		8F33A41426B7A0FC00B9C01C /* WorkSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		8F33A41926B7A28300B9C01C /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.release.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.release.xcconfig"; sourceTree = "<group>"; };
 		B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.debug.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,15 +102,15 @@
 		6AEECB7426B1436B00EDFD5D /* FoodWaste */ = {
 			isa = PBXGroup;
 			children = (
+				8F33A41226B7A09700B9C01C /* fonts */,
+				8F33A41026B79DF900B9C01C /* Screens */,
 				6A79C4AA26B3CA00007D6D4D /* Model */,
 				6A79C4A926B3C9A2007D6D4D /* ViewModel */,
-				6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */,
-				6AEECB7726B1436B00EDFD5D /* ContentView.swift */,
-				6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */,
 				6AEC265C26B40522005EF1BE /* DesignSystem.swift */,
+				8F33A41926B7A28300B9C01C /* CustomFont.swift */,
 				6AEECB7926B1436C00EDFD5D /* Assets.xcassets */,
 				6AEECB7E26B1436C00EDFD5D /* Info.plist */,
-				6A79C48326B3A45D007D6D4D /* GoogleService-Info.plist */,
+				8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */,
 				6AEECB7B26B1436C00EDFD5D /* Preview Content */,
 			);
 			path = FoodWaste;
@@ -114,6 +122,26 @@
 				6AEECB7C26B1436C00EDFD5D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8F33A41026B79DF900B9C01C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */,
+				6AEECB7726B1436B00EDFD5D /* ContentView.swift */,
+				6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */,
+				8F33A3FE26B79DE700B9C01C /* OnboardingComplete.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		8F33A41226B7A09700B9C01C /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8F33A41326B7A0FC00B9C01C /* WorkSans-Italic-VariableFont_wght.ttf */,
+				8F33A41426B7A0FC00B9C01C /* WorkSans-VariableFont_wght.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		CCDB3C84F95B926534C386A6 /* Frameworks */ = {
@@ -184,8 +212,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AEECB7D26B1436C00EDFD5D /* Preview Assets.xcassets in Resources */,
+				8F8F049326B77B4A00EE056D /* GoogleService-Info.plist in Resources */,
 				6AEECB7A26B1436C00EDFD5D /* Assets.xcassets in Resources */,
-				6A79C48426B3A45D007D6D4D /* GoogleService-Info.plist in Resources */,
+				8F33A41726B7A18700B9C01C /* WorkSans-VariableFont_wght.ttf in Resources */,
+				8F33A41526B7A18400B9C01C /* WorkSans-Italic-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +273,9 @@
 				6A79C4A826B3C958007D6D4D /* FoodItemModel.swift in Sources */,
 				6AEC265D26B40522005EF1BE /* DesignSystem.swift in Sources */,
 				6AEECB7626B1436B00EDFD5D /* FoodWasteApp.swift in Sources */,
+				8F33A41A26B7A28300B9C01C /* CustomFont.swift in Sources */,
 				6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */,
+				8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

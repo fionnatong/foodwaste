@@ -32,6 +32,5 @@ class FoodShelfViewModel: ObservableObject {
     func addFoodItem(name: String, quantity: Int) {
         db.collection(FOOD_COLLECTION).addDocument(data: ["name": name, "quantity": quantity])
     }
-    
 }
 
