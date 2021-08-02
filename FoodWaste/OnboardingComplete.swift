@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OnboardingComplete: View {
     var body: some View {
-        
         ZStack(alignment: .top){
             Color("secondary").edgesIgnoringSafeArea(.all)
             Spacer().padding(.top, 24)
@@ -20,6 +19,7 @@ struct OnboardingComplete: View {
                     Text("Your food donations have been launched into the Marketplace.")
                         .font(CustomFont.bodyRegular)
                         .multilineTextAlignment(.center)
+                        // need to add fixedSize for linewrap to work properly
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal, 24)
