@@ -30,16 +30,20 @@ struct AddFoodItem: View {
                     // TODO: add expiry date datepicker
                     // TODO: add halal checkbox
                     // TODO: add add item button
+                    
+                    VStack {
+                        NavigationLink(destination: OnboardingComplete(), isActive: $goToComplete) {
+                            EmptyView()
+                        }
+                        Button("Add item") {
+                            self.goToComplete = true
+                        }.buttonStyle(PrimaryButtonStyle())
+                    }
+                    .padding(.top, 30)
+                    
                 }
                 .padding(.horizontal, 14)
                 .padding(.top, 10)
-                
-                NavigationLink(destination: OnboardingComplete(), isActive: $goToComplete) {
-                    EmptyView()
-                }
-                Button("Donate!") {
-                    self.goToComplete = true
-                }
             }
         }
     }

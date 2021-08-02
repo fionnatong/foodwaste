@@ -23,7 +23,6 @@ struct Input: View {
                 .cornerRadius(16)
                 .shadow(color: Color("shadow"), radius: 12, x: 0, y: 4)
         }
-        .padding(.horizontal, 14)
         .padding(.top, 10)
     }
 }
