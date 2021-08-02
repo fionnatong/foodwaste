@@ -7,8 +7,18 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration
             .label
             .foregroundColor(.white)
-            .padding()
+            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, alignment: .center)
             .background(isEnabled ? Color("primary") : .gray)
-            .cornerRadius(8)
+            .cornerRadius(100)
+            .font(CustomFont.button)
+    }
+}
+
+struct Button_Previews: PreviewProvider {
+    static var previews: some View {
+        Button("Primary Button") {
+            print("clicked")
+        }.buttonStyle(PrimaryButtonStyle())
     }
 }
