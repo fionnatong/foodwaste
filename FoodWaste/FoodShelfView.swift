@@ -11,6 +11,7 @@ struct FoodShelfView: View {
     @ObservedObject private var viewModel = FoodShelfViewModel()
     @State private var name: String = ""
     @State private var quantity: String = ""
+    @State private var goToAddItem = false;
     
     func submit() {
         if (!name.isEmpty && !quantity.isEmpty) {
@@ -21,31 +22,39 @@ struct FoodShelfView: View {
     }
     
     var body: some View {
-        List(viewModel.foodItems) { item in
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(item.name).font(.title)
-                    Spacer()
-                    Text("\(item.quantity)").font(.subheadline)
-                }
-            }
-        }
-        .onAppear() {
-            self.viewModel.getFoodItems()
-        }
-        .navigationTitle("Food Shelf")
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
-                    TextField("Name", text: $name)
-                        .frame(minWidth: 100)
-                    TextField("Quantity", text: $quantity)
-                        .frame(minWidth: 100)
-                    Spacer()
-                    Button(action: self.submit) {
-                        Text("+")
+        ZStack {
+            List(viewModel.foodItems) { item in
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(item.name).font(.title)
+                        Spacer()
+                        Text("\(item.quantity)").font(.subheadline)
                     }
                 }
+            }
+            .onAppear() {
+                self.viewModel.getFoodItems()
+            }
+            .navigationTitle("Food Shelf")
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    HStack {
+                        TextField("Name", text: $name)
+                            .frame(minWidth: 100)
+                        TextField("Quantity", text: $quantity)
+                            .frame(minWidth: 100)
+                        Spacer()
+                        Button(action: self.submit) {
+                            Text("+")
+                        }
+                    }
+                }
+            }
+            NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
+                EmptyView()
+            }
+            Button("Add Item") {
+                self.goToAddItem = true
             }
         }
     }

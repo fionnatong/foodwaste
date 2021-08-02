@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingComplete: View {
+    @State private var completeOnboarding: Bool = false;
     var body: some View {
         ZStack(alignment: .top){
             Color("secondary").edgesIgnoringSafeArea(.all)
@@ -35,8 +36,16 @@ struct OnboardingComplete: View {
                         .multilineTextAlignment(.center)
                 }
                 .padding(.horizontal, 24)
+                
+                NavigationLink(destination: FoodShelfView(), isActive: $completeOnboarding) {
+                    EmptyView()
+                }
+                Button("Go to Food Inventory") {
+                    self.completeOnboarding = true
+                }
             }
             .padding(.top, 24)
+            .navigationBarHidden(true)
         }
     }
 }

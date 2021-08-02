@@ -24,6 +24,7 @@
 		8F33A41A26B7A28300B9C01C /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A41926B7A28300B9C01C /* CustomFont.swift */; };
 		8F33A42126B7CA3200B9C01C /* AddFoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A42026B7CA3100B9C01C /* AddFoodItem.swift */; };
 		8F33A42526B7DB3C00B9C01C /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A42426B7DB3C00B9C01C /* Input.swift */; };
+		8F33A42E26B7FD4B00B9C01C /* PlaceholderBusinessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33A42D26B7FD4B00B9C01C /* PlaceholderBusinessInfo.swift */; };
 		8F8F049326B77B4A00EE056D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */; };
 		E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */; };
 /* End PBXBuildFile section */
@@ -304,6 +305,7 @@
 				8F33A41A26B7A28300B9C01C /* CustomFont.swift in Sources */,
 				6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */,
 				8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */,
+				8F33A42E26B7FD4B00B9C01C /* PlaceholderBusinessInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
