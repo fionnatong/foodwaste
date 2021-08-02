@@ -11,9 +11,17 @@ struct ContentView: View {
     @State private var selection: Int? = nil
     
     var body: some View {
-        VStack {
-            NavigationView {
+        NavigationView {
+            ZStack(alignment: .topLeading){
+                Color("secondary").edgesIgnoringSafeArea(.all)
                 VStack {
+                    Image("icon")
+                    Text("Welcome!")
+                        .font(CustomFont.headerOne)
+                    Text("I would like to:")
+                        .font(CustomFont.headerTwo)
+                        .padding(.top, 70)
+                        .padding(.bottom, 24)
                     NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
                     Button("I am donor") {
                         self.selection = 0
@@ -22,7 +30,10 @@ struct ContentView: View {
                     Button("I am receiver") {
                         self.selection = 1
                     }.buttonStyle(PrimaryButtonStyle())
-                }.navigationTitle("Choose your role")
+                }
+                .padding(.top, 100)
+                .frame(maxHeight: .infinity, alignment: .topLeading)
+                .navigationBarHidden(true)
             }
         }
     }
