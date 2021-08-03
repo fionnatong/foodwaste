@@ -10,9 +10,13 @@ import SwiftUI
 struct AddFoodItem: View {
     @StateObject var viewModel = AddItemViewModel()
     @State private var goToComplete: Bool = false
-    
+   
     func addItem() {
-        self.viewModel.addFoodItem()
+        self.viewModel.addFoodItem(onCompleted: {(isSuccess) -> Void in
+            if isSuccess {
+                self.goToComplete = true
+            }
+        })
     }
     
     var body: some View {

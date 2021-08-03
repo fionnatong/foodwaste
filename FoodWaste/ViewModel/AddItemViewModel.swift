@@ -25,8 +25,18 @@ class AddItemViewModel: ObservableObject {
         foodItem.weight = newValue
     }
     
-    func addFoodItem() {
+    func addFoodItem(onCompleted: @escaping (_ isSuccess: Bool) -> Void) {
         print("addFoodItem called with ", foodItem);
-//        db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight])
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight]){ err in
+            if let err = err {
+                print("Error adding document: \(err)")
+                onCompleted(false)
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                onCompleted(true)
+            }
+        }
     }
 }
