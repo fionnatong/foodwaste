@@ -23,39 +23,58 @@ struct FoodShelfView: View {
     
     var body: some View {
         ZStack {
-            List(viewModel.foodItems) { item in
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(item.name).font(.title)
-                        Spacer()
-                        Text("\(item.quantity)").font(.subheadline)
+            CustomColor.secondary.edgesIgnoringSafeArea(.all)
+            VStack{
+                Button(action: { print("clicked!") }) {
+                    HStack{
+                        Image("ic-add")
+                        Text("Add a food item")
                     }
+                }.buttonStyle(SecondaryButtonStyle())
+                
+                NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
+                    EmptyView()
                 }
-            }
-            .onAppear() {
-                self.viewModel.getFoodItems()
-            }
-            .navigationTitle("Food Shelf")
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    HStack {
-                        TextField("Name", text: $name)
-                            .frame(minWidth: 100)
-                        TextField("Quantity", text: $quantity)
-                            .frame(minWidth: 100)
-                        Spacer()
-                        Button(action: self.submit) {
-                            Text("+")
-                        }
-                    }
+                Button("Donate!") {
+                    self.goToAddItem = true
                 }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(.top, 40)
             }
-            NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
-                EmptyView()
+            .padding(.horizontal, 16)
+            
+            // TODO: use scrollview with a ForEach to loop through fooditems
+            VStack {
+//                List(viewModel.foodItems) { item in
+//                    VStack(alignment: .leading) {
+//                        HStack {
+//                            Text(item.name).font(.title)
+//                            Spacer()
+//                            Text("\(item.quantity)").font(.subheadline)
+//                        }
+//                    }
+//                }
+//                .onAppear() {
+//                    self.viewModel.getFoodItems()
+//                }
+//                .navigationTitle("Food Shelf")
+//                .toolbar {
+//                    ToolbarItem(placement: .bottomBar) {
+//                        HStack {
+//                            TextField("Name", text: $name)
+//                                .frame(minWidth: 100)
+//                            TextField("Quantity", text: $quantity)
+//                                .frame(minWidth: 100)
+//                            Spacer()
+//                            Button(action: self.submit) {
+//                                Text("+")
+//                            }
+//                        }
+//                    }
+//                }
             }
-            Button("Add Item") {
-                self.goToAddItem = true
-            }
+            
+           
         }
     }
 }

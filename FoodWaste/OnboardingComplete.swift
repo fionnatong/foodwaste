@@ -49,6 +49,7 @@ struct OnboardingComplete: View {
                 }
             }
             .padding(.top, 24)
+            .padding(.horizontal, 16)
             .navigationBarHidden(true)
         }
     }
