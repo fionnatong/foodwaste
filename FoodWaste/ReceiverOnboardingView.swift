@@ -8,6 +8,12 @@ struct ReceiverOnboardingView: View {
         _viewModel = StateObject(wrappedValue: RecipientViewModel(initialValue: recipient))
     }
     
+    func addRecipient() {
+        // @TODO: call the firebase function
+        // store recipient to app storage
+        UserDefaults.standard.set(viewModel.recipient.address, forKey: "RecipientAddress")
+    }
+    
     var body: some View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
@@ -27,11 +33,14 @@ struct ReceiverOnboardingView: View {
                         set: { [viewModel] in viewModel.updateAddress($0) }
                     ))
                     
+                    Input(label: "Postal code",  placeholder: "Enter the organisation's address postal code", text: .constant("188675"))
+                    
                     VStack {
                         NavigationLink(destination: ReceiverOnboardCompleteView(), isActive: $completeOnboarding) {
                             EmptyView()
                         }
                         Button("Next") {
+                            self.addRecipient()
                             self.completeOnboarding = true
                         }
                         .buttonStyle(PrimaryButtonStyle())
