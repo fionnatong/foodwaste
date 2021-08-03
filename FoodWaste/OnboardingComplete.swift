@@ -44,6 +44,7 @@ struct OnboardingComplete: View {
                         EmptyView()
                     }
                     Button("Go to Food Inventory") {
+                        UserDefaults.standard.set(true, forKey: "IsOnboarded")
                         self.completeOnboarding = true
                     }.buttonStyle(PrimaryButtonStyle())
                 }

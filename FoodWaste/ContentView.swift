@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: Int? = nil
+    @State private var isOnboarded = UserDefaults.standard.bool(forKey: "IsOnboarded")
     
+    func resetOnboarded() {
+        UserDefaults.standard.set(false, forKey: "IsOnboarded")
+    }
+
+    @ViewBuilder
     var body: some View {
         NavigationView {
             ZStack(alignment: .topLeading){
@@ -23,43 +28,15 @@ struct ContentView: View {
                         .padding(.top, 70)
                         .padding(.bottom, 24)
                     
-                    HStack(spacing: 16) {
-                        VStack{
-                            NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
-                            Button(action: {self.selection = 0}) {
-                                VStack{
-                                    Image("landing-donor")
-                                    Text("Donate Food")
-                                        .font(CustomFont.headerFour)
-                                    Text("As a business owner")
-                                        .font(CustomFont.bodyTwoRegular)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .padding(.vertical, 16)
-                            }
-                            .buttonStyle(CardButtonStyle())
+                    if isOnboarded {
+                        NavigationLink("Skip to inventory", destination: FoodShelfView())
+                        Button("Reset onboarded value") {
+                            resetOnboarded()
+                            isOnboarded = false
                         }
-                        
-                        
-                        
-                        VStack {
-                            NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
-                            Button(action: {self.selection = 1}) {
-                                VStack{
-                                    Image("landing-receiver")
-                                    Text("Receive Food")
-                                        .font(CustomFont.headerFour)
-                                    Text("As an organisation")
-                                        .font(CustomFont.bodyTwoRegular)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .padding(.vertical, 16)
-                            }
-                            .buttonStyle(CardButtonStyle())
-                        }
+                    } else {
+                        NewUserView()
                     }
-                    
-                    NavigationLink("Skip to inventory", destination: FoodShelfView())
                 }
                 .padding(.top, 100)
                 .padding(.horizontal, 14)
@@ -73,5 +50,46 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+
+struct NewUserView: View {
+    @State private var selection: Int? = nil
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            VStack{
+                NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
+                Button(action: {self.selection = 0}) {
+                    VStack{
+                        Image("landing-donor")
+                        Text("Donate Food")
+                            .font(CustomFont.headerFour)
+                        Text("As a business owner")
+                            .font(CustomFont.bodyTwoRegular)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.vertical, 16)
+                }
+                .buttonStyle(CardButtonStyle())
+            }
+            
+            VStack {
+                NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
+                Button(action: {self.selection = 1}) {
+                    VStack{
+                        Image("landing-receiver")
+                        Text("Receive Food")
+                            .font(CustomFont.headerFour)
+                        Text("As an organisation")
+                            .font(CustomFont.bodyTwoRegular)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.vertical, 16)
+                }
+                .buttonStyle(CardButtonStyle())
+            }
+        }
     }
 }

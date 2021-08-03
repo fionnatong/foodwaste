@@ -48,6 +48,8 @@ struct AddFoodItem: View {
                         set: { p in self.viewModel.foodItem.halal = p}
                     ))
                     VStack {
+                        // if on onboarding flow > go to complete
+                        // if after onboarding flow > go back to inventory
                         NavigationLink(destination: OnboardingComplete(), isActive: $goToComplete) {
                             EmptyView()
                         }
@@ -63,7 +65,8 @@ struct AddFoodItem: View {
             }
         }
         .navigationTitle("")
-        .navigationBarHidden(true)
+        // TODO: discuss this implementation
+//        .navigationBarHidden(true)
         // @TODO: can style this part?
         .navigationBarTitleDisplayMode(.inline)
     }
