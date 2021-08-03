@@ -38,13 +38,13 @@ struct DonorOnboardingView: View {
                     .lineLimit(1)
                     .padding(.bottom, 8)
                 Group {
-                    Checkbox(title: "Monday", isChecked: monAvailable)
-                    Checkbox(title: "Tuesday", isChecked: tueAvailable)
-                    Checkbox(title: "Wednesday", isChecked: wedAvailable)
-                    Checkbox(title: "Thursday", isChecked: thursAvailable)
-                    Checkbox(title: "Friday", isChecked: friAvailable)
-                    Checkbox(title: "Saturday", isChecked: satAvailable)
-                    Checkbox(title: "Sunday", isChecked: sunAvailable)
+                    Checkbox(title: "Monday", isChecked: $monAvailable)
+                    Checkbox(title: "Tuesday", isChecked: $tueAvailable)
+                    Checkbox(title: "Wednesday", isChecked: $wedAvailable)
+                    Checkbox(title: "Thursday", isChecked: $thursAvailable)
+                    Checkbox(title: "Friday", isChecked: $friAvailable)
+                    Checkbox(title: "Saturday", isChecked: $satAvailable)
+                    Checkbox(title: "Sunday", isChecked: $sunAvailable)
                 }
                 .padding(.bottom, 12)
                 .onTapGesture {

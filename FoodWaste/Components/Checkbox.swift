@@ -2,14 +2,10 @@ import SwiftUI
 
 struct Checkbox: View {
     var title: String
-    @State var isChecked: Bool = false
-    
-    func toggle() {
-        isChecked = !isChecked
-    }
+    @Binding var isChecked: Bool
     
     var body: some View {
-        Button(action: toggle, label: {
+        Button(action: { self.isChecked.toggle() }, label: {
             HStack(spacing: 0) {
                 Image("ic-checkbox-\(isChecked ? "checked" : "unchecked")")
                     .padding(.init(top: 18, leading: 29, bottom: 18, trailing: 18))
@@ -29,10 +25,12 @@ struct Checkbox: View {
 }
 
 struct Checkbox_Previews: PreviewProvider {
+    @State private var checkboxFalse: Bool = false
+    @State private var checkboxTrue: Bool = true
     static var previews: some View {
         VStack {
-            Checkbox(title: "Monday", isChecked: false).padding(.bottom, 20)
-            Checkbox(title: "Tuesday", isChecked: true)
+            Checkbox(title: "Monday", isChecked: .constant(false)).padding(.bottom, 20)
+            Checkbox(title: "Tuesday", isChecked: .constant(true))
         }
     }
 }
