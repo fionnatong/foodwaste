@@ -14,11 +14,11 @@ struct FoodShelfView: View {
     @State private var goToAddItem = false;
     
     func submit() {
-        if (!name.isEmpty && !quantity.isEmpty) {
-            self.viewModel.addFoodItem(name: name, quantity: Int(quantity) ?? 0)
-            name = ""
-            quantity = ""
-        }
+//        if (!name.isEmpty && !quantity.isEmpty) {
+//            self.viewModel.addFoodItem(name: name, quantity: Int(quantity) ?? 0)
+//            name = ""
+//            quantity = ""
+//        }
     }
     
     var body: some View {

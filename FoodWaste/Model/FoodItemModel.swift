@@ -11,4 +11,5 @@ struct FoodItem: Codable, Identifiable {
     var id: String = UUID().uuidString
     var name: String
     var quantity: Int
+    var weight: String
 }

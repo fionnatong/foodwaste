@@ -24,13 +24,10 @@ class FoodShelfViewModel: ObservableObject {
                 let data = queryDocumentSnapshot.data()
                 let name = data["name"] as? String ?? ""
                 let quantity = data["quantity"] as? Int ?? 0
-                return FoodItem(name: name, quantity: quantity)
+                let weight = data["weight"] as? String ?? ""
+                return FoodItem(name: name, quantity: quantity, weight: weight)
             }
         }
-    }
-    
-    func addFoodItem(name: String, quantity: Int) {
-        db.collection(FOOD_COLLECTION).addDocument(data: ["name": name, "quantity": quantity])
     }
 }
 

@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct AddFoodItem: View {
-    @State private var foodName: String = ""
-    @State private var foodQuantity: String = ""
-    @State private var itemWeight: String = ""
+    @StateObject var viewModel = AddItemViewModel()
     @State private var goToComplete: Bool = false
+    
+    func addItem() {
+        self.viewModel.addFoodItem()
+    }
     
     var body: some View {
         ZStack(alignment: .topLeading){
             Color("secondary").edgesIgnoringSafeArea(.all)
             VStack {
                 VStack(alignment: .leading) {
-                    Input(label: "Food Name",  placeholder: "Enter the name of the food", text: $foodName)
-                    Input(label: "Quantity",  placeholder: "Enter the quantity of the food", text: $foodQuantity)
-                    Input(label: "Weight per item",  placeholder: "Enter the weight of the food", text: $itemWeight)
+                    Input(label: "Food Name",  placeholder: "Enter the name of the food", text: .init(
+                        get: { [viewModel] in viewModel.foodItem.name },
+                        set: { [viewModel] in viewModel.updateName($0) }
+                    ))
+                    Input(label: "Quantity",  placeholder: "Enter the quantity of the food", text: .init(
+                        get: { [viewModel] in viewModel.foodItem.quantity == 0 ? "" : String(viewModel.foodItem.quantity) },
+                        set: { [viewModel] in viewModel.updateQuantity($0) }
+                    ))
+                    Input(label: "Weight per item",  placeholder: "Enter the weight of the food", text: .init(
+                        get: { [viewModel] in viewModel.foodItem.weight },
+                        set: { [viewModel] in viewModel.updateWeight($0) }
+                    ))
                     // TODO: add expiry date datepicker
                     // TODO: add halal checkbox
                     // TODO: add add item button
@@ -30,7 +41,7 @@ struct AddFoodItem: View {
                             EmptyView()
                         }
                         Button("Add item") {
-                            self.goToComplete = true
+                            self.addItem()
                         }.buttonStyle(PrimaryButtonStyle())
                     }
                     .padding(.top, 30)
