@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodItem: Codable, Identifiable {
-    var id: String = UUID().uuidString
+    var id: String?
     var name: String
     var quantity: Int
     var weight: String

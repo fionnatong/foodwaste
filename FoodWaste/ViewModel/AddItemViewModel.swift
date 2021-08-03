@@ -34,19 +34,40 @@ class AddItemViewModel: ObservableObject {
         foodItem.weight = newValue
     }
     
+    func updateId(_ newValue: String) {
+        foodItem.id = newValue
+    }
+    
     func addFoodItem(onCompleted: @escaping (_ isSuccess: Bool) -> Void) {
         print("addFoodItem called with ", foodItem);
         var ref: DocumentReference? = nil
         let mockExpiryDate = Date(timeIntervalSinceNow: 864000) // mock (TODAY+10) date until datepicker is implemented
         
-        ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
+        // new food item
+        guard foodItem.id != nil else {
+            ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    onCompleted(false)
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    self.updateId(ref!.documentID)
+                    onCompleted(true)
+                }
+            }
+            return;
+        }
+        
+        // update existing food item
+        db.collection(FOOD_COLLECTION).document(foodItem.id!).updateData(["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
             if let err = err {
-                print("Error adding document: \(err)")
+                print("Error updating document: \(err)")
                 onCompleted(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document with id \(self.foodItem.id!) updated")
                 onCompleted(true)
             }
         }
+        
     }
 }
