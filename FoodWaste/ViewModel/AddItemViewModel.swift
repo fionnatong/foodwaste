@@ -37,10 +37,9 @@ class AddItemViewModel: ObservableObject {
     func addFoodItem(onCompleted: @escaping (_ isSuccess: Bool) -> Void) {
         print("addFoodItem called with ", foodItem);
         var ref: DocumentReference? = nil
-        let mockHalal = true
         let mockExpiryDate = Date(timeIntervalSinceNow: 864000) // mock (TODAY+10) date until datepicker is implemented
         
-        ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": mockHalal, "expiry": mockExpiryDate]) { err in
+        ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
                 onCompleted(false)

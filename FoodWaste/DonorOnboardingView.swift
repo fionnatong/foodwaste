@@ -24,7 +24,6 @@ struct DonorOnboardingView: View {
     }
     let data = (1...100).map { "Item \($0)" }
     
-    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading, spacing: nil) {

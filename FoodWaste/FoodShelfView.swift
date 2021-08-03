@@ -14,7 +14,6 @@ struct FoodShelfView: View {
     @State private var goToAddItem = false;
     
     var body: some View {
-        NavigationView {
             ZStack{
                 CustomColor.secondary.edgesIgnoringSafeArea(.all)
                 ScrollView{
@@ -54,9 +53,7 @@ struct FoodShelfView: View {
                     .padding(.horizontal, 16)
                 }
             }
-            .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }
     }
 }
 
