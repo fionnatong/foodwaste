@@ -3,14 +3,16 @@ import SwiftUI
 struct CheckboxGrid: View {
     var groupLabel: String
     var titleList: [String]
-    @State var selectedSet: Set = Set<String>()
+    @Binding var selectedSet: Set<String>
+    @State private var internalSelectedSet = Set<String>()
     
     func toggle(itemName: String) {
-        if (selectedSet.contains(itemName)) {
-            selectedSet.remove(itemName)
+        if (internalSelectedSet.contains(itemName)) {
+            internalSelectedSet.remove(itemName)
         } else {
-            selectedSet.insert(itemName)
+            internalSelectedSet.insert(itemName)
         }
+        selectedSet = internalSelectedSet
     }
     
     var body: some View {
@@ -32,7 +34,7 @@ struct CheckboxGrid: View {
                     })
                     
                     .overlay(RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color("primary"), lineWidth: selectedSet.contains(item) ? 3 : 0))
+                                .stroke(Color("primary"), lineWidth: internalSelectedSet.contains(item) ? 3 : 0))
                     .foregroundColor(Color("text"))
                     .background(Color.white .cornerRadius(16) .shadow(color: Color("shadow"), radius: 12, x: 0, y: 4) )
                 }
@@ -44,6 +46,6 @@ struct CheckboxGrid: View {
 
 struct CheckboxGrid_Previews: PreviewProvider {
     static var previews: some View {
-        CheckboxGrid(groupLabel: " This is a grid", titleList: ["Beverages (Sealed)", "Canned food", "Rice & grains", "Cereal"])
+        CheckboxGrid(groupLabel: " This is a grid", titleList: ["Beverages (Sealed)", "Canned food", "Rice & grains", "Cereal"], selectedSet: .constant(Set()))
     }
 }
