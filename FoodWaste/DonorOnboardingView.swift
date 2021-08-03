@@ -4,6 +4,9 @@ struct DonorOnboardingView: View {
     @State private var goToAddItem: Bool = false
     
     @State private var bizName: String = ""
+    @State private var uenNum: String = ""
+    @State private var bizAdd: String = ""
+    
     @State private var monAvailable: Bool = false
     @State private var tueAvailable: Bool = false
     @State private var wedAvailable: Bool = false
@@ -11,7 +14,15 @@ struct DonorOnboardingView: View {
     @State private var friAvailable: Bool = false
     @State private var satAvailable: Bool = false
     @State private var sunAvailable: Bool = false
-    @State private var MondayAvailable: Bool = false
+    
+    @State private var typesOfItemsSold = Set<String>()
+    
+    var FoodItems = ["Beverages (Sealed)", "Canned food", "Rice & grains", "Cereal"]
+    
+    var items: [GridItem] {
+        Array(repeating: .init(.adaptive(minimum: 500)), count: FoodItems.count)
+    }
+    let data = (1...100).map { "Item \($0)" }
     
     
     var body: some View {
@@ -19,9 +30,11 @@ struct DonorOnboardingView: View {
             VStack (alignment: .leading, spacing: nil) {
                 Text("Tell me about your business").font(CustomFont.headerOne)
                 Input(label: "Business Name", placeholder: "", text: $bizName).padding(.bottom, 32)
-                
+                Input(label: "UEN Number", placeholder: "", text: $uenNum).padding(.bottom, 32)
+                Input(label: "Business Address", placeholder: "", text: $bizAdd).padding(.bottom, 32)
+                CheckboxGrid(groupLabel: "Types of Food & Drinks Sold", titleList: FoodItems).padding(.bottom, 32)
                 Text("Available Collection Dates")
-                    .font(CustomFont.bodyMedium)
+                    .font(CustomFont.bodyTwoRegular)
                     .lineLimit(1)
                     .padding(.bottom, 8)
                 Group {
@@ -37,6 +50,7 @@ struct DonorOnboardingView: View {
                 .onTapGesture {
                     self.endTextEditing()
                 }
+                
                 NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
                     EmptyView()
                 }
