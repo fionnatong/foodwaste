@@ -17,7 +17,10 @@ struct FoodShelfView: View {
             ZStack{
                 CustomColor.secondary.edgesIgnoringSafeArea(.all)
                 ScrollView{
-                    VStack (spacing: 16){
+                    VStack (alignment: .leading, spacing: 16){
+                        Text("Food Inventory")
+                            .font(CustomFont.headerOne)
+                            
                         NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
                             EmptyView()
                         }
