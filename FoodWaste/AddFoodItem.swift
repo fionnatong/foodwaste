@@ -17,12 +17,6 @@ struct AddFoodItem: View {
         ZStack(alignment: .topLeading){
             Color("secondary").edgesIgnoringSafeArea(.all)
             VStack {
-                // TODO: how to align this to the start of parent?
-                VStack(alignment: .leading){
-                    Text("Add a food donation")
-                        .font(CustomFont.headerOne)
-                }
-                
                 VStack(alignment: .leading) {
                     Input(label: "Food Name",  placeholder: "Enter the name of the food", text: $foodName)
                     Input(label: "Quantity",  placeholder: "Enter the quantity of the food", text: $foodQuantity)
@@ -46,6 +40,7 @@ struct AddFoodItem: View {
                 .padding(.top, 10)
             }
         }
+        .navigationTitle("Add a food donation")
     }
 }
 
