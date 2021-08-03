@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SecondaryButtonStyle: ButtonStyle {
+struct AddFoodButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
@@ -27,7 +27,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     }
 }
 
-struct SecondaryButton_Previews: PreviewProvider {
+struct AddFoodButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Button(action: { print("clicked!") }) {
@@ -35,7 +35,7 @@ struct SecondaryButton_Previews: PreviewProvider {
                     Image("ic-add")
                     Text("Add a food item")
                 }
-            }.buttonStyle(SecondaryButtonStyle())
+            }.buttonStyle(AddFoodButtonStyle())
         }.background(Color.black)
     }
 }

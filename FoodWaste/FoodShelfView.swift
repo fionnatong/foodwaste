@@ -30,7 +30,7 @@ struct FoodShelfView: View {
                         Image("ic-add")
                         Text("Add a food item")
                     }
-                }.buttonStyle(SecondaryButtonStyle())
+                }.buttonStyle(AddFoodButtonStyle())
                 
                 NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
                     EmptyView()
