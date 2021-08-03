@@ -37,9 +37,10 @@ struct AddFoodItem: View {
                         set: { [viewModel] in viewModel.updateWeight($0) }
                     ))
                     // TODO: add expiry date datepicker
-                    // TODO: add halal checkbox
-                    // TODO: add add item button
-                    
+                    Checkbox(title: "Halal", isChecked: Binding<Bool>(
+                        get: { return self.viewModel.foodItem.halal},
+                        set: { p in self.viewModel.foodItem.halal = p}
+                    ))
                     VStack {
                         NavigationLink(destination: OnboardingComplete(), isActive: $goToComplete) {
                             EmptyView()
