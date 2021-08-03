@@ -37,11 +37,15 @@ struct OnboardingComplete: View {
                 }
                 .padding(.horizontal, 24)
                 
-                NavigationLink(destination: FoodShelfView(), isActive: $completeOnboarding) {
-                    EmptyView()
-                }
-                Button("Go to Food Inventory") {
-                    self.completeOnboarding = true
+                Spacer()
+                
+                VStack{
+                    NavigationLink(destination: FoodShelfView(), isActive: $completeOnboarding) {
+                        EmptyView()
+                    }
+                    Button("Go to Food Inventory") {
+                        self.completeOnboarding = true
+                    }.buttonStyle(PrimaryButtonStyle())
                 }
             }
             .padding(.top, 24)
