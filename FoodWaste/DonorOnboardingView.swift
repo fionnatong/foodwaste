@@ -1,61 +1,76 @@
 import SwiftUI
 
 struct DonorOnboardingView: View {
-    @State private var goToAddItem: Bool = false
-    
-    @State private var bizName: String = ""
-    @State private var uenNum: String = ""
-    @State private var bizAdd: String = ""
-    
-    @State private var monAvailable: Bool = false
-    @State private var tueAvailable: Bool = false
-    @State private var wedAvailable: Bool = false
-    @State private var thursAvailable: Bool = false
-    @State private var friAvailable: Bool = false
-    @State private var satAvailable: Bool = false
-    @State private var sunAvailable: Bool = false
-    
-    @State private var typesOfItemsSold = Set<String>()
-    
+    @State private var goToOnboardSuccess: Bool = false
+    @State private var viewModel = BusinessDetailsViewModel()
+   
     var FoodItems = ["Beverages (Sealed)", "Canned food", "Rice & grains", "Cereal"]
-    
-    var items: [GridItem] {
-        Array(repeating: .init(.adaptive(minimum: 500)), count: FoodItems.count)
-    }
-    let data = (1...100).map { "Item \($0)" }
     
     var body: some View {
         ScrollView {
             VStack (alignment: .leading, spacing: nil) {
-                Text("Tell me about your business").font(CustomFont.headerOne)
-                Input(label: "Business Name", placeholder: "", text: $bizName).padding(.bottom, 32)
-                Input(label: "UEN Number", placeholder: "", text: $uenNum).padding(.bottom, 32)
-                Input(label: "Business Address", placeholder: "", text: $bizAdd).padding(.bottom, 32)
-                CheckboxGrid(groupLabel: "Types of Food & Drinks Sold", titleList: FoodItems).padding(.bottom, 32)
+                Group {
+                    Text("Tell me about your business").font(CustomFont.headerOne)
+                    Input(label: "Business Name", placeholder: "", text: $viewModel.businessDetails.bizName)
+                    Input(label: "UEN Number", placeholder: "", text: $viewModel.businessDetails.uenNum)
+                    Input(label: "Business Address", placeholder: "", text: $viewModel.businessDetails.bizAdd)
+                    Input(label: "Postal Code", placeholder: "", text: $viewModel.businessDetails.postalCode)
+                    CheckboxGrid(groupLabel: "Types of Food & Drinks Sold",
+                                 titleList: FoodItems,
+                                 selectedSet: $viewModel.businessDetails.typesOfItemsSold).onTapGesture {
+                        self.endTextEditing()
+                    }
+                }
+                .padding(.bottom, 32)
                 Text("Available Collection Dates")
                     .font(CustomFont.bodyTwoRegular)
                     .lineLimit(1)
                     .padding(.bottom, 8)
                 Group {
-                    Checkbox(title: "Monday", isChecked: $monAvailable)
-                    Checkbox(title: "Tuesday", isChecked: $tueAvailable)
-                    Checkbox(title: "Wednesday", isChecked: $wedAvailable)
-                    Checkbox(title: "Thursday", isChecked: $thursAvailable)
-                    Checkbox(title: "Friday", isChecked: $friAvailable)
-                    Checkbox(title: "Saturday", isChecked: $satAvailable)
-                    Checkbox(title: "Sunday", isChecked: $sunAvailable)
+                    Checkbox(title: "Monday", isChecked: $viewModel.businessDetails.monAvailable)
+                    Checkbox(title: "Tuesday", isChecked: $viewModel.businessDetails.tueAvailable)
+                    Checkbox(title: "Wednesday", isChecked: $viewModel.businessDetails.wedAvailable)
+                    Checkbox(title: "Thursday", isChecked: $viewModel.businessDetails.thursAvailable)
+                    Checkbox(title: "Friday", isChecked: $viewModel.businessDetails.friAvailable
+                    )
+                    Checkbox(title: "Saturday", isChecked: $viewModel.businessDetails.satAvailable)
+                    Checkbox(title: "Sunday", isChecked: $viewModel.businessDetails.sunAvailable)
                 }
                 .padding(.bottom, 12)
                 .onTapGesture {
                     self.endTextEditing()
                 }
+                Group {
+                    Text("Available Collection Dates")
+                        .font(CustomFont.bodyTwoRegular)
+                        .lineLimit(1)
+                        .padding(.bottom, 8)
+                    HStack(alignment: .center, spacing: 16) {
+                        DatePicker("", selection: $viewModel.businessDetails.startTime, displayedComponents: .hourAndMinute)
+                            .background(Color.white)
+                            .accentColor(Color("text"))
+                            .labelsHidden()
+                        Text("to")
+                        DatePicker("", selection: $viewModel.businessDetails.endTime, displayedComponents: .hourAndMinute)
+                            .background(Color.white)
+                            .accentColor(Color("text"))
+                            .labelsHidden()
+                        Spacer()
+                    }
+                }
+                Text("You can edit these information later in your Profile.").font(CustomFont.bodyRegular).padding(.bottom, 36)
+                Group {
+                    NavigationLink(destination: OnboardingComplete(), isActive: $goToOnboardSuccess) {
+                        EmptyView()
+                    }
+                    Button("Next") {
+                        viewModel.saveToFirebase { completed in
+                            // TODO: handle when completed = false
+                            self.goToOnboardSuccess = true
+                        }
+                    }.buttonStyle(PrimaryButtonStyle())
+                }.padding(.bottom, 32)
                 
-                NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
-                    EmptyView()
-                }
-                Button("Donate!") {
-                    self.goToAddItem = true
-                }
             }
             .padding(.init(top: 48, leading: 16, bottom: 16, trailing: 16))
             .background(CustomColor.secondary)

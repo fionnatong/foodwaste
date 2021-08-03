@@ -3,11 +3,16 @@ import SwiftUI
 struct Checkbox: View {
     var title: String
     @Binding var isChecked: Bool
+    @State private var internalIsCheck: Bool = false
     
     var body: some View {
-        Button(action: { self.isChecked.toggle() }, label: {
+        Button(action: {
+            isChecked.toggle()
+            internalIsCheck.toggle()
+            
+        }, label: {
             HStack(spacing: 0) {
-                Image("ic-checkbox-\(isChecked ? "checked" : "unchecked")")
+                Image("ic-checkbox-\(internalIsCheck ? "checked" : "unchecked")")
                     .padding(.init(top: 18, leading: 29, bottom: 18, trailing: 18))
                 Text(title)
                     .font(CustomFont.bodyRegular)
@@ -16,8 +21,8 @@ struct Checkbox: View {
         })
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color("primary"), lineWidth: isChecked ? 3 : 0)
-                
+                .stroke(Color("primary"), lineWidth: internalIsCheck ? 3 : 0)
+            
         )
         .foregroundColor(Color("text"))
         .background(Color.white .cornerRadius(16) .shadow(color: Color("shadow"), radius: 12, x: 0, y: 4) )
