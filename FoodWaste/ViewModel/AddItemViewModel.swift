@@ -9,9 +9,18 @@ import SwiftUI
 import FirebaseFirestore
 
 class AddItemViewModel: ObservableObject {
-    @Published var foodItem: FoodItem = FoodItem(name: "", quantity: 0, weight: "", halal: false, expiry: Date())
+    @Published var foodItem: FoodItem
     private var db = Firestore.firestore()
     let FOOD_COLLECTION = "food"
+    
+    init (initialValue: FoodItem?){
+        guard let initialItem = initialValue  else {
+            self.foodItem  = FoodItem(name: "", quantity: 0, weight: "", halal: false, expiry: Date())
+            return
+        }
+        
+        self.foodItem = initialItem
+    }
     
     func updateName(_ newValue: String) {
         foodItem.name = newValue

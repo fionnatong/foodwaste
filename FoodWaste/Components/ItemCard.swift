@@ -15,6 +15,7 @@ struct ItemCard: View {
                     Text(item.name)
                         .fixedSize(horizontal: false, vertical: true)
                         .font(CustomFont.headerFour)
+                        .foregroundColor(Color.black)
                     
                     Spacer()
                     
@@ -22,13 +23,16 @@ struct ItemCard: View {
                         .font(CustomFont.bodyMedium)
                         .foregroundColor(CustomColor.primary)
                 }
+                .padding(.trailing, 8)
                 
                 HStack {
                     Text("\(item.weight) • \(item.halal ? "Halal" : "Non-halal")")
                         .font(CustomFont.caption)
-                    
+                        .foregroundColor(Color("gray-two"))
+                }
+                
+                HStack {
                     Spacer()
-                    
                     Text("Expires in \(calendar.dateComponents([.day], from: item.expiry).day!) days")
                         .font(CustomFont.caption)
                         .padding(4)
@@ -39,9 +43,10 @@ struct ItemCard: View {
                                 .fill(CustomColor.primary)
                         )
                 }
+                .padding(.top, 24)
             }
             .frame(maxWidth: .infinity)
-            .padding(EdgeInsets(top: 16, leading: 24, bottom: 8, trailing: 24))
+            .padding(EdgeInsets(top: 16, leading: 24, bottom: 8, trailing: 8))
         }
     }
 }

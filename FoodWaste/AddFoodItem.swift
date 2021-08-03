@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct AddFoodItem: View {
-    @StateObject var viewModel = AddItemViewModel()
+    @StateObject var viewModel: AddItemViewModel
     @State private var goToComplete: Bool = false
     @State private var date = Date()
+    
+    init(item: FoodItem? = nil) {
+        _viewModel = StateObject(wrappedValue: AddItemViewModel(initialValue: item))
+    }
    
     func addItem() {
         self.viewModel.addFoodItem(onCompleted: {(isSuccess) -> Void in
@@ -25,6 +29,7 @@ struct AddFoodItem: View {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
             VStack {
                 VStack(alignment: .leading, spacing: 24) {
+                    Text("Add food item").font(CustomFont.headerOne)
                     Input(label: "Food Name",  placeholder: "Enter the name of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.name },
                         set: { [viewModel] in viewModel.updateName($0) }
@@ -57,7 +62,9 @@ struct AddFoodItem: View {
                 .padding(.top, 10)
             }
         }
-        .navigationTitle("Add a food donation")
+        .navigationTitle("")
+        // @TODO: can style this part?
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

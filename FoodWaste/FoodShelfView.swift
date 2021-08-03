@@ -22,60 +22,45 @@ struct FoodShelfView: View {
     }
     
     var body: some View {
-        ZStack {
-            CustomColor.secondary.edgesIgnoringSafeArea(.all)
-            VStack{
-                Button(action: { print("clicked!") }) {
-                    HStack{
-                        Image("ic-add")
-                        Text("Add a food item")
+//        NavigationView {
+            ZStack{
+                CustomColor.secondary.edgesIgnoringSafeArea(.all)
+                ScrollView{
+                    VStack (spacing: 16){
+                        Button(action: { print("clicked!") }) {
+                            HStack{
+                                Image("ic-add")
+                                Text("Add a food item")
+                            }
+                        }.buttonStyle(AddFoodButtonStyle())
+                        
+                        
+                        VStack {
+                            ForEach(self.viewModel.foodItems) { foodItem in
+                                NavigationLink(destination: AddFoodItem(item: foodItem)) {
+                                    ItemCard(item: foodItem)
+                                }
+                                
+                            }
+                        }.onAppear() {
+                            self.viewModel.getFoodItems()
+                        }
+                            
+                        NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
+                            EmptyView()
+                        }
+                        Button("Donate!") {
+                            self.goToAddItem = true
+                        }
+                        .buttonStyle(PrimaryButtonStyle())
+                        .padding(.top, 40)
                     }
-                }.buttonStyle(AddFoodButtonStyle())
-                
-                NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
-                    EmptyView()
+                    .padding(.horizontal, 16)
                 }
-                Button("Donate!") {
-                    self.goToAddItem = true
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .padding(.top, 40)
             }
-            .padding(.horizontal, 16)
-            
-            // TODO: use scrollview with a ForEach to loop through fooditems
-            VStack {
-//                List(viewModel.foodItems) { item in
-//                    VStack(alignment: .leading) {
-//                        HStack {
-//                            Text(item.name).font(.title)
-//                            Spacer()
-//                            Text("\(item.quantity)").font(.subheadline)
-//                        }
-//                    }
-//                }
-//                .onAppear() {
-//                    self.viewModel.getFoodItems()
-//                }
-//                .navigationTitle("Food Shelf")
-//                .toolbar {
-//                    ToolbarItem(placement: .bottomBar) {
-//                        HStack {
-//                            TextField("Name", text: $name)
-//                                .frame(minWidth: 100)
-//                            TextField("Quantity", text: $quantity)
-//                                .frame(minWidth: 100)
-//                            Spacer()
-//                            Button(action: self.submit) {
-//                                Text("+")
-//                            }
-//                        }
-//                    }
-//                }
-            }
-            
-           
-        }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+//        }
     }
 }
 
