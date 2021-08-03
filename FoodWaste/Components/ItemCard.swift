@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct ItemCard: View {
+    var item: FoodItem
+    let calendar = Calendar.current
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
@@ -9,24 +12,24 @@ struct ItemCard: View {
         
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Royal Umbrella Thai Hom Mali Rice")
+                    Text(item.name)
                         .fixedSize(horizontal: false, vertical: true)
                         .font(CustomFont.headerFour)
                     
                     Spacer()
                     
-                    Text("x 8")
+                    Text("x \(item.quantity)")
                         .font(CustomFont.bodyMedium)
                         .foregroundColor(CustomColor.primary)
                 }
                 
                 HStack {
-                    Text("40kg • Halal")
+                    Text("\(item.weight) • \(item.halal ? "Halal" : "Non-halal")")
                         .font(CustomFont.caption)
                     
                     Spacer()
                     
-                    Text("Expires in 5 weeks")
+                    Text("Expires in \(calendar.dateComponents([.day], from: item.expiry).day!) days")
                         .font(CustomFont.caption)
                         .padding(4)
                         .frame(alignment: .trailing)
@@ -45,6 +48,6 @@ struct ItemCard: View {
 
 struct ItemCard_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCard()
+        ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: -86400)))
     }
 }

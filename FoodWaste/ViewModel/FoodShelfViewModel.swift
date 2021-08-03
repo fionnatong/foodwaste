@@ -25,7 +25,9 @@ class FoodShelfViewModel: ObservableObject {
                 let name = data["name"] as? String ?? ""
                 let quantity = data["quantity"] as? Int ?? 0
                 let weight = data["weight"] as? String ?? ""
-                return FoodItem(name: name, quantity: quantity, weight: weight)
+                let halal = data["halal"] as? Bool ?? false
+                let expiry = data["expiry"] as? Date ?? Date()
+                return FoodItem(name: name, quantity: quantity, weight: weight, halal: halal, expiry: expiry)
             }
         }
     }
