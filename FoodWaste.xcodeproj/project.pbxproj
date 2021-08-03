@@ -16,6 +16,8 @@
 		6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */; };
 		6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */; };
 		6AAC0ECD26B8CA4A00C81A23 /* ItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC0ECC26B8CA4A00C81A23 /* ItemCard.swift */; };
+		6AE2E6DD26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */; };
+		6AE2E6DF26B98E1700F5EDC4 /* FoodBasketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */; };
 		6AEC265D26B40522005EF1BE /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC265C26B40522005EF1BE /* CustomColor.swift */; };
 		6AEECB7626B1436B00EDFD5D /* FoodWasteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */; };
 		6AEECB7826B1436B00EDFD5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEECB7726B1436B00EDFD5D /* ContentView.swift */; };
@@ -46,6 +48,8 @@
 		6A79C4AB26B3CB6E007D6D4D /* FoodShelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfViewModel.swift; sourceTree = "<group>"; };
 		6A79C4B026B3CE29007D6D4D /* FoodShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodShelfView.swift; sourceTree = "<group>"; };
 		6AAC0ECC26B8CA4A00C81A23 /* ItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCard.swift; sourceTree = "<group>"; };
+		6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverOnboardCompleteView.swift; sourceTree = "<group>"; };
+		6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBasketsView.swift; sourceTree = "<group>"; };
 		6AEC265C26B40522005EF1BE /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		6AEECB7226B1436B00EDFD5D /* FoodWaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodWaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEECB7526B1436B00EDFD5D /* FoodWasteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodWasteApp.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				8F33A3FE26B79DE700B9C01C /* OnboardingComplete.swift */,
 				8F33A42026B7CA3100B9C01C /* AddFoodItem.swift */,
 				235E24F726B7D93300D9D262 /* ReceiverOnboardingView.swift */,
+				6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */,
+				6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -313,8 +319,10 @@
 				8F8CC6F826B9275C0073DC08 /* AddFoodButton.swift in Sources */,
 				8F33A42526B7DB3C00B9C01C /* Input.swift in Sources */,
 				8F8CC6ED26B85E6F0073DC08 /* CardButton.swift in Sources */,
+				6AE2E6DD26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift in Sources */,
 				6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */,
 				23812BF726B9032C001DA8C6 /* CheckboxGrid.swift in Sources */,
+				6AE2E6DF26B98E1700F5EDC4 /* FoodBasketsView.swift in Sources */,
 				8F8CC6F026B8D0530073DC08 /* AddItemViewModel.swift in Sources */,
 				8F33A42126B7CA3200B9C01C /* AddFoodItem.swift in Sources */,
 				235E24F326B7BBB500D9D262 /* DonorOnboardingView.swift in Sources */,

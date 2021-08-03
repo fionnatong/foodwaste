@@ -2,7 +2,13 @@ import SwiftUI
 
 struct ReceiverOnboardingView: View {
     var body: some View {
-        Text("I want some donuts")
+        VStack (spacing: 8) {
+            Text("I want some donuts")
+            Text("Onboarding form here")
+            NavigationLink(destination: ReceiverOnboardCompleteView()) {
+                Text("Complete onboarding")
+            }
+        }
     }
 }
 
