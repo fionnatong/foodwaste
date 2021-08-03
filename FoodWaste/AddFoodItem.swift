@@ -10,6 +10,7 @@ import SwiftUI
 struct AddFoodItem: View {
     @StateObject var viewModel = AddItemViewModel()
     @State private var goToComplete: Bool = false
+    @State private var date = Date()
    
     func addItem() {
         self.viewModel.addFoodItem(onCompleted: {(isSuccess) -> Void in
@@ -23,7 +24,7 @@ struct AddFoodItem: View {
         ZStack(alignment: .topLeading){
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
             VStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 24) {
                     Input(label: "Food Name",  placeholder: "Enter the name of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.name },
                         set: { [viewModel] in viewModel.updateName($0) }
