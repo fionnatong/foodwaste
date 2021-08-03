@@ -12,6 +12,8 @@ struct AddFoodItem: View {
     @State private var goToComplete: Bool = false
     @State private var date = Date()
     
+    @Environment(\.presentationMode) var presentationMode
+    
     init(item: FoodItem? = nil) {
         _viewModel = StateObject(wrappedValue: AddItemViewModel(initialValue: item))
     }
@@ -20,6 +22,7 @@ struct AddFoodItem: View {
         self.viewModel.addFoodItem(onCompleted: {(isSuccess) -> Void in
             if isSuccess {
                 self.goToComplete = true
+                presentationMode.wrappedValue.dismiss()
             }
         })
     }
@@ -48,11 +51,6 @@ struct AddFoodItem: View {
                         set: { p in self.viewModel.foodItem.halal = p}
                     ))
                     VStack {
-                        // if on onboarding flow > go to complete
-                        // if after onboarding flow > go back to inventory
-                        NavigationLink(destination: OnboardingComplete(), isActive: $goToComplete) {
-                            EmptyView()
-                        }
                         Button("Add item") {
                             self.addItem()
                         }.buttonStyle(PrimaryButtonStyle())
