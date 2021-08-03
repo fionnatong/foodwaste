@@ -27,7 +27,10 @@ struct FoodShelfView: View {
                 CustomColor.secondary.edgesIgnoringSafeArea(.all)
                 ScrollView{
                     VStack (spacing: 16){
-                        Button(action: { print("clicked!") }) {
+                        NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
+                            EmptyView()
+                        }
+                        Button(action: { self.goToAddItem = true }) {
                             HStack{
                                 Image("ic-add")
                                 Text("Add a food item")
