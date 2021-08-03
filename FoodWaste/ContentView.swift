@@ -22,40 +22,45 @@ struct ContentView: View {
                         .font(CustomFont.headerTwo)
                         .padding(.top, 70)
                         .padding(.bottom, 24)
-//                    NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
-//                    Button("I am donor") {
-//                        self.selection = 0
-//                    }.buttonStyle(PrimaryButtonStyle()).padding(.bottom, 24)
-//                    NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
-//                    Button("I am receiver") {
-//                        self.selection = 1
-//                    }.buttonStyle(PrimaryButtonStyle())
                     
-                    HStack {
-                        NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
-                        Button(action: {self.selection = 0}) {
-                            VStack{
-                                Text("Donate Food")
-                                    .font(CustomFont.bodyMedium)
-                                Text("As a business owner")
-                                    .font(CustomFont.bodyRegular)
-                            }.padding(16)
+                    HStack(spacing: 16) {
+                        VStack{
+                            NavigationLink(destination: DonorOnboardingView(), tag: 0, selection: $selection,  label: {EmptyView()})
+                            Button(action: {self.selection = 0}) {
+                                VStack{
+                                    Image("landing-donor")
+                                    Text("Donate Food")
+                                        .font(CustomFont.headerFour)
+                                    Text("As a business owner")
+                                        .font(CustomFont.bodyTwoRegular)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.vertical, 16)
+                            }
+                            .buttonStyle(CardButtonStyle())
                         }
-                        .buttonStyle(CardButtonStyle())
                         
-                        NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
-                        Button(action: {self.selection = 1}) {
-                            VStack{
-                                Text("Receive Food")
-                                    .font(CustomFont.bodyMedium)
-                                Text("As an organisation")
-                                    .font(CustomFont.bodyRegular)
-                            }.padding(16)
+                        
+                        
+                        VStack {
+                            NavigationLink(destination: ReceiverOnboardingView(), tag: 1, selection: $selection,  label: {EmptyView()})
+                            Button(action: {self.selection = 1}) {
+                                VStack{
+                                    Image("landing-receiver")
+                                    Text("Receive Food")
+                                        .font(CustomFont.headerFour)
+                                    Text("As an organisation")
+                                        .font(CustomFont.bodyTwoRegular)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.vertical, 16)
+                            }
+                            .buttonStyle(CardButtonStyle())
                         }
-                        .buttonStyle(CardButtonStyle())
                     }
                 }
                 .padding(.top, 100)
+                .padding(.horizontal, 14)
                 .frame(maxHeight: .infinity, alignment: .topLeading)
                 .navigationBarHidden(true)
             }
