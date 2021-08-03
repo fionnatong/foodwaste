@@ -17,7 +17,7 @@ struct AddFoodItem: View {
     
     var body: some View {
         ZStack(alignment: .topLeading){
-            Color("secondary").edgesIgnoringSafeArea(.all)
+            CustomColor.secondary.edgesIgnoringSafeArea(.all)
             VStack {
                 VStack(alignment: .leading) {
                     Input(label: "Food Name",  placeholder: "Enter the name of the food", text: .init(

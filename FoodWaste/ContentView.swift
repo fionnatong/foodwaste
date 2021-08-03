@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .topLeading){
-                Color("secondary").edgesIgnoringSafeArea(.all)
+                CustomColor.secondary.edgesIgnoringSafeArea(.all)
                 VStack {
                     Image("icon")
                     Text("Welcome!")

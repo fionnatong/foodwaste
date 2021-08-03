@@ -11,7 +11,7 @@ struct OnboardingComplete: View {
     @State private var completeOnboarding: Bool = false;
     var body: some View {
         ZStack(alignment: .top){
-            Color("secondary").edgesIgnoringSafeArea(.all)
+            CustomColor.secondary.edgesIgnoringSafeArea(.all)
             Spacer().padding(.top, 24)
             VStack{
                 VStack(spacing: 8) {

@@ -45,7 +45,7 @@ struct DonorOnboardingView: View {
                 }
             }
             .padding(.init(top: 48, leading: 16, bottom: 16, trailing: 16))
-            .background(Color("secondary"))
+            .background(CustomColor.secondary)
             .onTapGesture {
                 self.endTextEditing()
             }
