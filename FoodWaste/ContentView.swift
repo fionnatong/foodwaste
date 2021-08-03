@@ -58,6 +58,8 @@ struct ContentView: View {
                             .buttonStyle(CardButtonStyle())
                         }
                     }
+                    
+                    NavigationLink("Skip to inventory", destination: FoodShelfView())
                 }
                 .padding(.top, 100)
                 .padding(.horizontal, 14)
