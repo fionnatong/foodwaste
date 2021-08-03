@@ -26,14 +26,14 @@ struct ItemCard: View {
                 .padding(.trailing, 8)
                 
                 HStack {
-                    Text("\(item.weight) • \(item.halal ? "Halal" : "Non-halal")")
+                    Text("\(item.weight.isEmpty ? "No weight specified" : item.weight) • \(item.halal ? "Halal" : "Non-halal")")
                         .font(CustomFont.caption)
                         .foregroundColor(Color("gray-two"))
                 }
                 
                 HStack {
                     Spacer()
-                    Text("Expires in \(calendar.dateComponents([.day], from: item.expiry).day!) days")
+                    Text("Expires in \(calendar.dateComponents([.day], from: Date(), to: item.expiry).day!) days")
                         .font(CustomFont.caption)
                         .padding(4)
                         .frame(alignment: .trailing)
@@ -53,6 +53,6 @@ struct ItemCard: View {
 
 struct ItemCard_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: -86400)))
+        ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000)))
     }
 }

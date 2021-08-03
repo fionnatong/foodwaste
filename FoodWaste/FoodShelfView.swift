@@ -13,16 +13,8 @@ struct FoodShelfView: View {
     @State private var quantity: String = ""
     @State private var goToAddItem = false;
     
-    func submit() {
-//        if (!name.isEmpty && !quantity.isEmpty) {
-//            self.viewModel.addFoodItem(name: name, quantity: Int(quantity) ?? 0)
-//            name = ""
-//            quantity = ""
-//        }
-    }
-    
     var body: some View {
-//        NavigationView {
+        NavigationView {
             ZStack{
                 CustomColor.secondary.edgesIgnoringSafeArea(.all)
                 ScrollView{
@@ -52,6 +44,7 @@ struct FoodShelfView: View {
                         NavigationLink(destination: AddFoodItem(), isActive: $goToAddItem) {
                             EmptyView()
                         }
+                        
                         Button("Donate!") {
                             self.goToAddItem = true
                         }
@@ -63,7 +56,7 @@ struct FoodShelfView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-//        }
+        }
     }
 }
 

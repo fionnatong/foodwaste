@@ -12,6 +12,7 @@ class FoodShelfViewModel: ObservableObject {
     @Published var foodItems = [FoodItem]()
     private var db = Firestore.firestore()
     let FOOD_COLLECTION = "food"
+    let calendar = Calendar.current
     
     func getFoodItems() {
         db.collection(FOOD_COLLECTION).addSnapshotListener { (querySnapshot, error) in
@@ -26,7 +27,7 @@ class FoodShelfViewModel: ObservableObject {
                 let quantity = data["quantity"] as? Int ?? 0
                 let weight = data["weight"] as? String ?? ""
                 let halal = data["halal"] as? Bool ?? false
-                let expiry = data["expiry"] as? Date ?? Date()
+                let expiry = (data["expiry"] as? Timestamp)?.dateValue() ?? Date()
                 return FoodItem(name: name, quantity: quantity, weight: weight, halal: halal, expiry: expiry)
             }
         }

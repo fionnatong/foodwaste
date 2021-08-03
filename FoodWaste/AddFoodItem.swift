@@ -63,6 +63,7 @@ struct AddFoodItem: View {
             }
         }
         .navigationTitle("")
+        .navigationBarHidden(true)
         // @TODO: can style this part?
         .navigationBarTitleDisplayMode(.inline)
     }
