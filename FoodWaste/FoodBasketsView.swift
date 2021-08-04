@@ -38,18 +38,6 @@ struct FoodBasketsView: View {
                 }
                 .padding(.horizontal, 16)
             }
-            VStack {
-                Spacer()
-                //@TODO: add back when view is added
-//                    NavigationLink(destination: FoodBasketsView(), isActive: $selectTime) {
-//                        EmptyView()
-//                    }
-                Button("Next: Select collection time") {
-                    print("clicked")
-                }
-                .buttonStyle(PrimaryButtonStyle()).disabled(!enableButton)
-            }
-            .padding(.horizontal, 16)
         }
         .navigationBarHidden(true)
     }

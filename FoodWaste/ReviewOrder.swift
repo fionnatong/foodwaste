@@ -11,6 +11,7 @@ import SwiftUI
 struct ReviewOrder: View {
     var business: BusinesssDetailsModel
     var selectedFoodItems: [FoodItem]
+    var selectedDate: Date
     
     let calendar = Calendar.current
     
@@ -25,7 +26,7 @@ struct ReviewOrder: View {
                     ReviewDonorDetails(business: business)
                         .padding(.bottom, 16)
                     
-                    ReviewSelecedItems(selectedFoodItems: selectedFoodItems)
+                    ReviewSelecedItems(business: business, selectedFoodItems: selectedFoodItems)
                         .padding(.bottom, 16)
                     
                     ReviewCollectionDate()
@@ -38,7 +39,7 @@ struct ReviewOrder: View {
 
 struct ReviewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), selectedFoodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")])
+        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), selectedFoodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedDate: Date())
     }
 }
 
@@ -94,17 +95,23 @@ struct ReviewDonorDetails: View {
 }
 
 struct ReviewSelecedItems: View {
+    var business: BusinesssDetailsModel
     var selectedFoodItems: [FoodItem]
     let calendar = Calendar.current
     
     var body: some View {
         VStack(alignment: .leading) {
             VStack (alignment: .leading){
-                Text("Selected Items")
-                    .font(CustomFont.headerThree)
-                    .foregroundColor(Color.black)
-                    .multilineTextAlignment(.leading)
-                    .padding(.bottom, 20)
+                HStack{
+                    Text("Selected Items")
+                        .font(CustomFont.headerThree)
+                        .foregroundColor(Color.black)
+                        .multilineTextAlignment(.leading)
+                        .padding(.bottom, 20)
+                    Spacer()
+                    NavigationLink("Edit", destination: BusinessFoodView(business: business, foodItems: selectedFoodItems))
+                }
+                
                 
                 ForEach(selectedFoodItems) { item in
                     VStack(alignment: .leading) {

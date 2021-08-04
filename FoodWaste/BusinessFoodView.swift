@@ -16,6 +16,8 @@ struct BusinessFoodView: View {
         
         if !selectedFoodItems.isEmpty {
             enableButton = true
+        } else {
+            enableButton = false
         }
     }
     

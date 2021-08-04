@@ -4,6 +4,7 @@ struct CollectionDateView: View {
     var business: BusinesssDetailsModel
     var foodItems: [FoodItem]
     @State private var selectedDate = Date()
+    @State private var goToReview: Bool = false
     
     // TODO: how to disable certain days?
     let dateRange: ClosedRange<Date> = {
@@ -58,8 +59,9 @@ struct CollectionDateView: View {
                 
                 Spacer()
                 
+                NavigationLink(destination: ReviewOrder(business: business, selectedFoodItems: foodItems, selectedDate: selectedDate), isActive: $goToReview) { EmptyView () }
                 Button("Review details") {
-                    print("hehe")
+                    self.goToReview = true
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
