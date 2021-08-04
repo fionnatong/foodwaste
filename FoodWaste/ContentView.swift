@@ -30,6 +30,7 @@ struct ContentView: View {
                     
                     if isOnboarded {
                         NavigationLink("Skip to inventory", destination: FoodShelfView())
+                        NavigationLink("Skip to basket", destination: FoodBasketsView())
                         Button("Reset onboarded value") {
                             resetOnboarded()
                             isOnboarded = false

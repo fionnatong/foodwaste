@@ -40,6 +40,7 @@
 		8F8CC70426B9A0260073DC08 /* RecipientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CC70326B9A0260073DC08 /* RecipientViewModel.swift */; };
 		8F8CC70926BA2A1E0073DC08 /* CoordinatesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CC70826BA2A1D0073DC08 /* CoordinatesHelper.swift */; };
 		8F8F049326B77B4A00EE056D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */; };
+		8FFF091826BA4C790006937C /* FoodBasketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */; };
 		E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		8F8CC70326B9A0260073DC08 /* RecipientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientViewModel.swift; sourceTree = "<group>"; };
 		8F8CC70826BA2A1D0073DC08 /* CoordinatesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesHelper.swift; sourceTree = "<group>"; };
 		8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBasketsViewModel.swift; sourceTree = "<group>"; };
 		9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.release.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.release.xcconfig"; sourceTree = "<group>"; };
 		B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.debug.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 				8F8CC6EF26B8D0520073DC08 /* AddItemViewModel.swift */,
 				8F8CC70326B9A0260073DC08 /* RecipientViewModel.swift */,
 				23812BFA26B944D8001DA8C6 /* BusinessDetailsViewModel.swift */,
+				8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				8F8CC70426B9A0260073DC08 /* RecipientViewModel.swift in Sources */,
 				8F8CC6F826B9275C0073DC08 /* AddFoodButton.swift in Sources */,
 				8F33A42526B7DB3C00B9C01C /* Input.swift in Sources */,
+				8FFF091826BA4C790006937C /* FoodBasketsViewModel.swift in Sources */,
 				8F8CC6ED26B85E6F0073DC08 /* CardButton.swift in Sources */,
 				6AE2E6DD26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift in Sources */,
 				6A79C4B126B3CE2A007D6D4D /* FoodShelfView.swift in Sources */,

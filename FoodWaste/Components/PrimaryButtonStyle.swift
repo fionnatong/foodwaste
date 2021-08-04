@@ -19,6 +19,6 @@ struct Button_Previews: PreviewProvider {
     static var previews: some View {
         Button("Primary Button") {
             print("clicked")
-        }.buttonStyle(PrimaryButtonStyle())
+        }.buttonStyle(PrimaryButtonStyle()).disabled(true)
     }
 }
