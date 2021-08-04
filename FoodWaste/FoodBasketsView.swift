@@ -4,21 +4,8 @@ struct FoodBasketsView: View {
     @ObservedObject private var viewModel = FoodShelfViewModel()
     @ObservedObject private var basketViewModel = FoodBasketsViewModel()
     @State private var recipientAddress = UserDefaults.standard.string(forKey: "RecipientAddress")
-//    @State private var selectedFoodItems: Set = Set<String>()
     @State private var businessPostalCode: String = "608536" // TODO: remove hardcode later
     @State private var enableButton: Bool = false;
-    
-//    func toggle(itemId: String) {
-//        if (selectedFoodItems.contains(itemId)) {
-//            selectedFoodItems.remove(itemId)
-//        } else {
-//            selectedFoodItems.insert(itemId)
-//        }
-//
-//        if !selectedFoodItems.isEmpty {
-//            enableButton = true
-//        }
-//    }
     
     var body: some View {
 //        Text("TODO: FOOD BASKETS LIST")
@@ -39,17 +26,8 @@ struct FoodBasketsView: View {
                         .font(CustomFont.bodyTwoRegular)
                         .foregroundColor(Color("gray-two"))
                     
-//                    ForEach(self.viewModel.foodItems) { foodItem in
-//                        Button(action: { toggle(itemId: foodItem.id!) }) {
-//                            ItemCard(item: foodItem)
-//                        }
-//                        .overlay(RoundedRectangle(cornerRadius: 16)
-//                                    .stroke(Color("primary"), lineWidth: selectedFoodItems.contains(foodItem.id!) ? 3 : 0)
-//                        )
-//                    }
-                    
                     ForEach(self.basketViewModel.foodBaskets) { basket in
-                        Button(action: { print("clicked!")}) {
+                        NavigationLink(destination: BusinessFoodView(business: basket.business, foodItems: basket.foodItems)) {
                             BusinessCard(basket: basket)
                         }
                     }
