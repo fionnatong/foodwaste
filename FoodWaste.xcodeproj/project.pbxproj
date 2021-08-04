@@ -44,6 +44,7 @@
 		8FFF091826BA4C790006937C /* FoodBasketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */; };
 		8FFF092E26BA7FBE0006937C /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF092D26BA7FBE0006937C /* Dropdown.swift */; };
 		8FFF093226BADAA30006937C /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF093126BADAA30006937C /* BusinessCard.swift */; };
+		8FFF093526BAE1EF0006937C /* ReviewOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF093426BAE1EF0006937C /* ReviewOrder.swift */; };
 		E472F1BEFF98A91ABA12AC5D /* Pods_FoodWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646F2E1195A62F3CDC4FD43D /* Pods_FoodWaste.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBasketsViewModel.swift; sourceTree = "<group>"; };
 		8FFF092D26BA7FBE0006937C /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		8FFF093126BADAA30006937C /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
+		8FFF093426BAE1EF0006937C /* ReviewOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewOrder.swift; sourceTree = "<group>"; };
 		9E4D6049BD1E631B2B4D8114 /* Pods-FoodWaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.release.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.release.xcconfig"; sourceTree = "<group>"; };
 		B8BDEA375C0E7D433A4BD1CB /* Pods-FoodWaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodWaste.debug.xcconfig"; path = "Target Support Files/Pods-FoodWaste/Pods-FoodWaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 				6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */,
 				6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */,
 				6AAE1DA526BAB04F00C3E209 /* BusinessFoodView.swift */,
+				8FFF093426BAE1EF0006937C /* ReviewOrder.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				6A79C4AC26B3CB6E007D6D4D /* FoodShelfViewModel.swift in Sources */,
 				8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */,
 				8FFF092E26BA7FBE0006937C /* Dropdown.swift in Sources */,
+				8FFF093526BAE1EF0006937C /* ReviewOrder.swift in Sources */,
 				8F33A42E26B7FD4B00B9C01C /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
