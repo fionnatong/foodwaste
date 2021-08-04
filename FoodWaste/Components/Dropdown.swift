@@ -12,6 +12,7 @@ struct Dropdown: View {
     @State private var selectedOption: DropdownOption? = nil
     private let rowHeight: CGFloat = 62
     var options: [DropdownOption]
+    var initOption: DropdownOption? = nil
     var onOptionSelected: ((_ option: DropdownOption) -> Void)?
     
     var body: some View {
@@ -48,6 +49,9 @@ struct Dropdown: View {
                     }
                 }, alignment: .topLeading
             )
+            .onAppear {
+                self.selectedOption = initOption
+            }
         }.zIndex(1)
     }
 }
@@ -65,7 +69,7 @@ struct DropdownList: View {
                 }
             }
         }
-        .frame(height: options.count > 1 ? rowHeight * 2 : rowHeight)
+        .frame(height: rowHeight * CGFloat(options.count))
         .padding(.vertical, 5)
         .background(Color.white)
         .cornerRadius(16)
@@ -101,6 +105,16 @@ struct DropdownOption: Hashable {
     }
 }
 
+struct DropdownHelper {
+    static func mapStringToOption(value: String, options: [DropdownOption]) -> DropdownOption {
+        let mappedOption = options.filter { (option) in
+            return option.value == value
+        }
+        
+        return mappedOption[0]
+    }
+}
+
 struct Dropdown_Previews: PreviewProvider {
     static var uniqueKey: String {
             UUID().uuidString
@@ -118,7 +132,7 @@ struct Dropdown_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            Dropdown(options: options, onOptionSelected: { option in
+            Dropdown(options: options, initOption: DropdownHelper.mapStringToOption(value: "Friday", options: options), onOptionSelected: { option in
                             print(option)})
             
             Input(label: "Food name", placeholder: "Enter name of food", text: .constant("Tests"))
