@@ -5,6 +5,7 @@ struct BusinessFoodView: View {
     var foodItems: [FoodItem]
     @State private var selectedFoodItems: Set = Set<String>()
     @State private var enableButton: Bool = false;
+    @State private var showCollectionTime: Bool = false
     
     func toggle(itemId: String) {
         if selectedFoodItems.contains(itemId) {
@@ -47,8 +48,9 @@ struct BusinessFoodView: View {
                 }
                 
                 // TODO: add view
+                NavigationLink(destination: CollectionDateView(business: business, foodItems: foodItems), isActive: $showCollectionTime) { EmptyView () }
                 Button("Next: Select collection time") {
-                    print("hehe")
+                    self.showCollectionTime = true
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 .disabled(!enableButton)
