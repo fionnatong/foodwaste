@@ -10,6 +10,7 @@ struct ReceiverOnboardingView: View {
     
     func addRecipient() {
         UserDefaults.standard.set(viewModel.recipient.address, forKey: "RecipientAddress")
+        UserDefaults.standard.set(viewModel.recipient.postalCode, forKey: "RecipientPostalCode")
         viewModel.addRecipient(onCompleted: {(isSuccess) -> Void in
             if isSuccess {
                 self.completeOnboarding = true

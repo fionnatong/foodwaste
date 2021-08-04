@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseFirestore
 
-// TODO: update this whole file after the donor side is complete.
 class RecipientViewModel: ObservableObject {
     @Published var recipient: Recipient
     private var db = Firestore.firestore()
@@ -21,18 +20,6 @@ class RecipientViewModel: ObservableObject {
         }
         
         self.recipient = initialRecipient
-    }
-    
-    func updateName(_ newValue: String) {
-        recipient.organisationName = newValue
-    }
-    
-    func updateUEN(_ newValue: String) {
-        recipient.uenNumber = newValue
-    }
-    
-    func updateAddress(_ newValue: String) {
-        recipient.address = newValue
     }
     
     func updateId(_ newValue: String) {
@@ -51,6 +38,7 @@ class RecipientViewModel: ObservableObject {
                 self.updateId(ref!.documentID)
                 onCompleted(true)
             }
-        }   
+        }
+
     }
 }
