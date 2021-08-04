@@ -61,7 +61,6 @@ struct ItemCard_Previews: PreviewProvider {
     }
 }
 
-// @TODO: get a total of the expiry range
 struct BusinessCard: View {
     var basket: FoodBasket
     let calendar = Calendar.current
