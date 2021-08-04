@@ -37,7 +37,7 @@ struct ReviewOrder: View {
                         .padding(.bottom, 16)
                         
                     
-                    ReviewCollectionDate()
+                    ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems)
                 }
                 .padding(.horizontal, 16)
             }
@@ -115,7 +115,7 @@ struct ReviewSelecedItems: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack (alignment: .leading){
-                HStack{
+                HStack(alignment: .top){
                     Text("Selected Items")
                         .font(CustomFont.headerThree)
                         .foregroundColor(Color.black)
@@ -125,6 +125,7 @@ struct ReviewSelecedItems: View {
                     
                     // not the best solution for edit. will create many layers
                     NavigationLink("Edit", destination: BusinessFoodView(business: business, foodItems: foodItems, initialSelectedFoodItems: selectedFoodItems))
+                        .foregroundColor(Color("action"))
                 }
                 
                 
@@ -174,14 +175,25 @@ struct ReviewSelecedItems: View {
 }
 
 struct ReviewCollectionDate: View {
+    var business: BusinesssDetailsModel
+    var foodItems: [FoodItem]
+    var selectedFoodItems: Set = Set<String>()
+    
     var body: some View {
         VStack(alignment: .leading) {
             VStack (alignment: .leading){
-                Text("Collection Date")
-                    .font(CustomFont.headerThree)
-                    .foregroundColor(Color.black)
-                    .multilineTextAlignment(.leading)
-                    .padding(.bottom, 20)
+                HStack(alignment: .top) {
+                    Text("Collection Date")
+                        .font(CustomFont.headerThree)
+                        .foregroundColor(Color.black)
+                        .multilineTextAlignment(.leading)
+                        .padding(.bottom, 20)
+                    
+                    Spacer()
+                    // not the best solution for edit. will create many layers
+                    NavigationLink("Edit", destination: CollectionDateView(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems))
+                        .foregroundColor(Color("action"))
+                }
                 
                 VStack(alignment: .leading) {
                     Text("Friday, 6 August 2021")
