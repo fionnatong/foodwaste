@@ -56,7 +56,7 @@ struct FoodBasketsView: View {
                 }
                 .onAppear() {
                     self.viewModel.getFoodItems()
-                    self.basketViewModel.getBusinessInfo()
+                    self.basketViewModel.getBusinessInfo(onComplete: nil)
                 }
                 .padding(.horizontal, 16)
             }

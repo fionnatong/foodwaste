@@ -19,4 +19,18 @@ class BusinessDetailsViewModel: ObservableObject {
             }
         }
     }
+    
+    func getFromFirebase(for bizUen: String, onComplete: @escaping (_ isSuccess: Bool) -> Void) {
+        print("getting businessDetails for \(bizUen) ");
+        let docRef = db.collection(BUSINESS_DETAILS).document(bizUen)
+        docRef.getDocument { document, error in
+            if let document = document, document.exists {
+                let data = try! JSONSerialization.data(withJSONObject: document.data()!, options: JSONSerialization.WritingOptions.prettyPrinted)
+                self.businessDetails = try! JSONDecoder().decode(BusinesssDetailsModel.self, from: data)
+                print("\(self.businessDetails)")
+            } else {
+                print("Data does not exist for \(bizUen)")
+            }
+        }
+    }
 }
