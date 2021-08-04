@@ -15,7 +15,8 @@ class FoodShelfViewModel: ObservableObject {
     let calendar = Calendar.current
     
     func getFoodItems() {
-        db.collection(FOOD_COLLECTION).addSnapshotListener { (querySnapshot, error) in
+        let businessUEN = UserDefaults.standard.value(forKey: "OnboardedBizUen") as? String ?? ""
+        db.collection(FOOD_COLLECTION).whereField("bizUen", isEqualTo: businessUEN).addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
