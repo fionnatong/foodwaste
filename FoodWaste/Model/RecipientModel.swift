@@ -12,4 +12,5 @@ struct Recipient: Codable, Identifiable {
     var organisationName: String
     var uenNumber: String
     var address: String
+    var postalCode: String
 }

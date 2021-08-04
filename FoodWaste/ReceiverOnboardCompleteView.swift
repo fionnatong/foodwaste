@@ -28,6 +28,7 @@ struct ReceiverOnboardCompleteView: View {
                         EmptyView()
                     }
                     Button("Go to Food Shelf") {
+                        UserDefaults.standard.set(true, forKey: "IsOnboarded")
                         self.completeOnboarding = true
                     }
                     .buttonStyle(PrimaryButtonStyle())

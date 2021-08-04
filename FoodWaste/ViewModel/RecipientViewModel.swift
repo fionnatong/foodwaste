@@ -16,7 +16,7 @@ class RecipientViewModel: ObservableObject {
     
     init (initialValue: Recipient?){
         guard let initialRecipient = initialValue  else {
-            self.recipient = Recipient(organisationName: "", uenNumber: "", address: "")
+            self.recipient = Recipient(organisationName: "", uenNumber: "", address: "", postalCode: "")
             return
         }
         
@@ -42,7 +42,7 @@ class RecipientViewModel: ObservableObject {
     func addRecipient(onCompleted: @escaping (_ isSuccess: Bool) -> Void) {
         print("addRecipient called with ", recipient);
         var ref: DocumentReference? = nil
-        ref = db.collection(RECIPIENT_COLLECTION).addDocument(data: ["organisationName": recipient.organisationName, "uenNumber": recipient.uenNumber, "address": recipient.address]) { err in
+        ref = db.collection(RECIPIENT_COLLECTION).addDocument(data: ["organisationName": recipient.organisationName, "uenNumber": recipient.uenNumber, "address": recipient.address, "postalCode": recipient.postalCode]) { err in
             if let err = err {
                 print("Error adding recipient: \(err)")
                 onCompleted(false)

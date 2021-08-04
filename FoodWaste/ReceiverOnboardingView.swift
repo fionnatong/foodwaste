@@ -9,39 +9,32 @@ struct ReceiverOnboardingView: View {
     }
     
     func addRecipient() {
-        // @TODO: call the firebase function
-        // store recipient to app storage
         UserDefaults.standard.set(viewModel.recipient.address, forKey: "RecipientAddress")
+        viewModel.addRecipient(onCompleted: {(isSuccess) -> Void in
+            if isSuccess {
+                self.completeOnboarding = true
+            }
+        })
     }
     
     var body: some View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
             ScrollView {
-                VStack (alignment: .leading, spacing: 24) {
+                VStack (alignment: .leading, spacing: 32) {
                     Text("Tell me about your organisation").font(CustomFont.headerOne)
-                    Input(label: "Organisation Name",  placeholder: "Enter the name of your organisation", text: .init(
-                        get: { [viewModel] in viewModel.recipient.organisationName },
-                        set: { [viewModel] in viewModel.updateName($0) }
-                    ))
-                    Input(label: "UEN Number",  placeholder: "Enter your UEN number", text: .init(
-                        get: { [viewModel] in viewModel.recipient.uenNumber },
-                        set: { [viewModel] in viewModel.updateUEN($0) }
-                    ))
-                    Input(label: "Organisation Address",  placeholder: "Enter the organisation's address", text: .init(
-                        get: { [viewModel] in viewModel.recipient.address },
-                        set: { [viewModel] in viewModel.updateAddress($0) }
-                    ))
-                    
-                    Input(label: "Postal code",  placeholder: "Enter the organisation's address postal code", text: .constant("188675"))
-                    
+                        .padding(.bottom, 8)
+                    Input(label: "Organisation Name",  placeholder: "Enter the name of your organisation", text: $viewModel.recipient.organisationName)
+                    Input(label: "UEN Number",  placeholder: "Enter your UEN number", text: $viewModel.recipient.uenNumber)
+                    Input(label: "Organisation Address",  placeholder: "Enter the organisation's address", text: $viewModel.recipient.address)
+                    Input(label: "Postal code",  placeholder: "Enter the organisation's postal code", text: $viewModel.recipient.postalCode)
+                   
                     VStack {
                         NavigationLink(destination: ReceiverOnboardCompleteView(), isActive: $completeOnboarding) {
                             EmptyView()
                         }
                         Button("Next") {
                             self.addRecipient()
-                            self.completeOnboarding = true
                         }
                         .buttonStyle(PrimaryButtonStyle())
                         .padding(.top, 40)
