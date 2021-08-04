@@ -28,8 +28,10 @@ class FoodShelfViewModel: ObservableObject {
                 let weight = data["weight"] as? String ?? ""
                 let halal = data["halal"] as? Bool ?? false
                 let expiry = (data["expiry"] as? Timestamp)?.dateValue() ?? Date()
+                let bizUen = data["bizUen"] as? String ?? "NO_UEN"
+                let postalCode = data["postalCode"] as? String ?? "000000"
                 let id = queryDocumentSnapshot.documentID
-                return FoodItem(id: id, name: name, quantity: quantity, weight: weight, halal: halal, expiry: expiry)
+                return FoodItem(id: id, name: name, quantity: quantity, weight: weight, halal: halal, expiry: expiry, bizUen: bizUen, postalCode: postalCode )
             }
         }
     }

@@ -2,8 +2,8 @@ import SwiftUI
 
 struct DonorOnboardingView: View {
     @State private var goToOnboardSuccess: Bool = false
-    @State private var viewModel = BusinessDetailsViewModel()
-   
+    @StateObject var bizDetailsviewModel = BusinessDetailsViewModel()
+    
     var FoodItems = ["Beverages (Sealed)", "Canned food", "Rice & grains", "Cereal"]
     
     var body: some View {
@@ -11,15 +11,15 @@ struct DonorOnboardingView: View {
             VStack (alignment: .leading, spacing: nil) {
                 Group {
                     Text("Tell me about your business").font(CustomFont.headerOne)
-                    Input(label: "Business Name", placeholder: "", text: $viewModel.businessDetails.bizName)
-                    Input(label: "UEN Number", placeholder: "", text: $viewModel.businessDetails.uenNum)
-                    Input(label: "Business Address", placeholder: "", text: $viewModel.businessDetails.bizAdd)
-                    Input(label: "Postal Code", placeholder: "", text: $viewModel.businessDetails.postalCode)
+                    Input(label: "Business Name", placeholder: "", text: $bizDetailsviewModel.businessDetails.bizName)
+                    Input(label: "UEN Number", placeholder: "", text: $bizDetailsviewModel.businessDetails.uenNum)
+                    Input(label: "Business Address", placeholder: "", text: $bizDetailsviewModel.businessDetails.bizAdd)
+                    Input(label: "Postal Code", placeholder: "", text: $bizDetailsviewModel.businessDetails.postalCode)
                     CheckboxGrid(groupLabel: "Types of Food & Drinks Sold",
                                  titleList: FoodItems,
-                                 selectedSet: $viewModel.businessDetails.typesOfItemsSold).onTapGesture {
-                        self.endTextEditing()
-                    }
+                                 selectedSet: $bizDetailsviewModel.businessDetails.typesOfItemsSold).onTapGesture {
+                                    self.endTextEditing()
+                                 }
                 }
                 .padding(.bottom, 32)
                 Text("Available Collection Dates")
@@ -27,14 +27,14 @@ struct DonorOnboardingView: View {
                     .lineLimit(1)
                     .padding(.bottom, 8)
                 Group {
-                    Checkbox(title: "Monday", isChecked: $viewModel.businessDetails.monAvailable)
-                    Checkbox(title: "Tuesday", isChecked: $viewModel.businessDetails.tueAvailable)
-                    Checkbox(title: "Wednesday", isChecked: $viewModel.businessDetails.wedAvailable)
-                    Checkbox(title: "Thursday", isChecked: $viewModel.businessDetails.thursAvailable)
-                    Checkbox(title: "Friday", isChecked: $viewModel.businessDetails.friAvailable
+                    Checkbox(title: "Monday", isChecked: $bizDetailsviewModel.businessDetails.monAvailable)
+                    Checkbox(title: "Tuesday", isChecked: $bizDetailsviewModel.businessDetails.tueAvailable)
+                    Checkbox(title: "Wednesday", isChecked: $bizDetailsviewModel.businessDetails.wedAvailable)
+                    Checkbox(title: "Thursday", isChecked: $bizDetailsviewModel.businessDetails.thursAvailable)
+                    Checkbox(title: "Friday", isChecked: $bizDetailsviewModel.businessDetails.friAvailable
                     )
-                    Checkbox(title: "Saturday", isChecked: $viewModel.businessDetails.satAvailable)
-                    Checkbox(title: "Sunday", isChecked: $viewModel.businessDetails.sunAvailable)
+                    Checkbox(title: "Saturday", isChecked: $bizDetailsviewModel.businessDetails.satAvailable)
+                    Checkbox(title: "Sunday", isChecked: $bizDetailsviewModel.businessDetails.sunAvailable)
                 }
                 .padding(.bottom, 12)
                 .onTapGesture {
@@ -46,12 +46,12 @@ struct DonorOnboardingView: View {
                         .lineLimit(1)
                         .padding(.bottom, 8)
                     HStack(alignment: .center, spacing: 16) {
-                        DatePicker("", selection: $viewModel.businessDetails.startTime, displayedComponents: .hourAndMinute)
+                        DatePicker("", selection: $bizDetailsviewModel.businessDetails.startTime, displayedComponents: .hourAndMinute)
                             .background(Color.white)
                             .accentColor(Color("text"))
                             .labelsHidden()
                         Text("to")
-                        DatePicker("", selection: $viewModel.businessDetails.endTime, displayedComponents: .hourAndMinute)
+                        DatePicker("", selection: $bizDetailsviewModel.businessDetails.endTime, displayedComponents: .hourAndMinute)
                             .background(Color.white)
                             .accentColor(Color("text"))
                             .labelsHidden()
@@ -60,11 +60,12 @@ struct DonorOnboardingView: View {
                 }
                 Text("You can edit these information later in your Profile.").font(CustomFont.bodyRegular).padding(.bottom, 36)
                 Group {
-                    NavigationLink(destination: OnboardingComplete(), isActive: $goToOnboardSuccess) {
+                    NavigationLink(destination: OnboardingComplete().environmentObject(bizDetailsviewModel)
+                                   , isActive: $goToOnboardSuccess) {
                         EmptyView()
                     }
                     Button("Next") {
-                        viewModel.saveToFirebase { completed in
+                        bizDetailsviewModel.saveToFirebase { completed in
                             // TODO: handle when completed = false
                             self.goToOnboardSuccess = true
                         }

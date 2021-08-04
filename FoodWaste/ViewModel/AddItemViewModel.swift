@@ -15,7 +15,13 @@ class AddItemViewModel: ObservableObject {
     
     init (initialValue: FoodItem?){
         guard let initialItem = initialValue  else {
-            self.foodItem = FoodItem(name: "", quantity: 0, weight: "", halal: false, expiry: Date())
+            self.foodItem = FoodItem(name: "",
+                                     quantity: 0,
+                                     weight: "",
+                                     halal: false,
+                                     expiry: Date(),
+                                     bizUen: (UserDefaults.standard.value(forKey: "OnboardedBizUen") as? String) ?? "NO_UEN",
+                                     postalCode: (UserDefaults.standard.value(forKey: "OnboardedBizPostalCode") as? String) ?? "000000")
             return
         }
         
@@ -42,10 +48,11 @@ class AddItemViewModel: ObservableObject {
         print("addFoodItem called with ", foodItem);
         var ref: DocumentReference? = nil
         let mockExpiryDate = Date(timeIntervalSinceNow: 864000) // mock (TODAY+10) date until datepicker is implemented
+        foodItem.expiry = mockExpiryDate
         
         // new food item
         guard foodItem.id != nil else {
-            ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
+            ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate, "bizUen": foodItem.bizUen, "postalCode": foodItem.postalCode]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                     onCompleted(false)

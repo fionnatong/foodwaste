@@ -53,6 +53,6 @@ struct ItemCard: View {
 
 struct ItemCard_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000)))
+        ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111"))
     }
 }

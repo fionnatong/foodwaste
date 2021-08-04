@@ -14,4 +14,6 @@ struct FoodItem: Codable, Identifiable {
     var weight: String
     var halal: Bool
     var expiry: Date
+    var bizUen: String
+    var postalCode: String
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingComplete: View {
     @State private var completeOnboarding: Bool = false;
+    @EnvironmentObject var bizDetailsviewModel: BusinessDetailsViewModel
+
     var body: some View {
         ZStack(alignment: .top){
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
@@ -45,6 +47,8 @@ struct OnboardingComplete: View {
                     }
                     Button("Go to Food Inventory") {
                         UserDefaults.standard.set(true, forKey: "IsOnboarded")
+                        UserDefaults.standard.setValue(bizDetailsviewModel.businessDetails.uenNum, forKey: "OnboardedBizUen")
+                        UserDefaults.standard.setValue(bizDetailsviewModel.businessDetails.postalCode, forKey: "OnboardedBizPostalCode")
                         self.completeOnboarding = true
                     }.buttonStyle(PrimaryButtonStyle())
                 }
