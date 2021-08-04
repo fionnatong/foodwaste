@@ -13,6 +13,16 @@ struct AddFoodItem: View {
     @State private var date = Date()
     
     @Environment(\.presentationMode) var presentationMode
+
+    let options: [DropdownOption] = [
+        DropdownOption(key: "beverages", value: "Beverages"),
+        DropdownOption(key: "confectionery", value: "Confectionery"),
+        DropdownOption(key: "dairies", value: "Dairies"),
+        DropdownOption(key: "fruits", value: "Fruits"),
+        DropdownOption(key: "groceries", value: "Groceries"),
+        DropdownOption(key: "vegetables", value: "Vegetables")
+    ]
+    
     
     init(item: FoodItem? = nil) {
         _viewModel = StateObject(wrappedValue: AddItemViewModel(initialValue: item))
@@ -37,6 +47,16 @@ struct AddFoodItem: View {
                         get: { [viewModel] in viewModel.foodItem.name },
                         set: { [viewModel] in viewModel.updateName($0) }
                     ))
+                    
+                    VStack(alignment: .leading) {
+                        Text("Food Type")
+                            .font(CustomFont.bodyMedium)
+                            .lineLimit(1)
+                        Dropdown(options: options, onOptionSelected: { option in
+                                    print(option)
+                        })
+                    }
+                    
                     Input(label: "Quantity",  placeholder: "Enter the quantity of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.quantity == 0 ? "" : String(viewModel.foodItem.quantity) },
                         set: { [viewModel] in viewModel.updateQuantity($0) }
