@@ -22,6 +22,7 @@
 		6AAE1DA626BAB04F00C3E209 /* BusinessFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE1DA526BAB04F00C3E209 /* BusinessFoodView.swift */; };
 		6AAE1DAA26BADB4400C3E209 /* CollectionDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE1DA926BADB4400C3E209 /* CollectionDateView.swift */; };
 		6AAE1DAC26BAF5C500C3E209 /* DonorNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE1DAB26BAF5C500C3E209 /* DonorNotificationView.swift */; };
+		6AAE1DAE26BAFDAE00C3E209 /* OrderConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE1DAD26BAFDAE00C3E209 /* OrderConfirmationView.swift */; };
 		6AE2E6DD26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */; };
 		6AE2E6DF26B98E1700F5EDC4 /* FoodBasketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */; };
 		6AEC265D26B40522005EF1BE /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC265C26B40522005EF1BE /* CustomColor.swift */; };
@@ -67,6 +68,7 @@
 		6AAE1DA526BAB04F00C3E209 /* BusinessFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFoodView.swift; sourceTree = "<group>"; };
 		6AAE1DA926BADB4400C3E209 /* CollectionDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDateView.swift; sourceTree = "<group>"; };
 		6AAE1DAB26BAF5C500C3E209 /* DonorNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorNotificationView.swift; sourceTree = "<group>"; };
+		6AAE1DAD26BAFDAE00C3E209 /* OrderConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationView.swift; sourceTree = "<group>"; };
 		6AE2E6DC26B98CAC00F5EDC4 /* ReceiverOnboardCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverOnboardCompleteView.swift; sourceTree = "<group>"; };
 		6AE2E6DE26B98E1700F5EDC4 /* FoodBasketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBasketsView.swift; sourceTree = "<group>"; };
 		6AEC265C26B40522005EF1BE /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				8FFF093426BAE1EF0006937C /* ReviewOrder.swift */,
 				6AAE1DA926BADB4400C3E209 /* CollectionDateView.swift */,
 				6AAE1DAB26BAF5C500C3E209 /* DonorNotificationView.swift */,
+				6AAE1DAD26BAFDAE00C3E209 /* OrderConfirmationView.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */,
 				8FFF092E26BA7FBE0006937C /* Dropdown.swift in Sources */,
 				8FFF093526BAE1EF0006937C /* ReviewOrder.swift in Sources */,
+				6AAE1DAE26BAFDAE00C3E209 /* OrderConfirmationView.swift in Sources */,
 				8F33A42E26B7FD4B00B9C01C /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
