@@ -25,6 +25,7 @@ class FoodShelfViewModel: ObservableObject {
             self.foodItems = documents.map { (queryDocumentSnapshot) -> FoodItem in
                 let data = queryDocumentSnapshot.data()
                 let name = data["name"] as? String ?? ""
+                let type = data["type"] as? String ?? ""
                 let quantity = data["quantity"] as? Int ?? 0
                 let weight = data["weight"] as? String ?? ""
                 let halal = data["halal"] as? Bool ?? false
@@ -32,7 +33,7 @@ class FoodShelfViewModel: ObservableObject {
                 let bizUen = data["bizUen"] as? String ?? "NO_UEN"
                 let postalCode = data["postalCode"] as? String ?? "000000"
                 let id = queryDocumentSnapshot.documentID
-                return FoodItem(id: id, name: name, quantity: quantity, weight: weight, halal: halal, expiry: expiry, bizUen: bizUen, postalCode: postalCode )
+                return FoodItem(id: id, name: name, type: type, quantity: quantity, weight: weight, halal: halal, expiry: expiry, bizUen: bizUen, postalCode: postalCode )
             }
         }
     }

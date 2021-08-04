@@ -53,7 +53,7 @@ struct AddFoodItem: View {
                             .font(CustomFont.bodyMedium)
                             .lineLimit(1)
                         Dropdown(options: options, onOptionSelected: { option in
-                                    print(option)
+                            viewModel.updateType(option.value)
                         })
                     }
                     

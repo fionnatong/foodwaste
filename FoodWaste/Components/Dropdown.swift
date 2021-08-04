@@ -15,37 +15,40 @@ struct Dropdown: View {
     var onOptionSelected: ((_ option: DropdownOption) -> Void)?
     
     var body: some View {
-        Button(action: {
-            self.shouldShowDropdown.toggle()
-        }) {
-            HStack {
-                Text(selectedOption == nil ? options[0].value : selectedOption!.value)
-                    .font(CustomFont.bodyRegular)
-                    .foregroundColor(Color.black)
+        // FIXME: zindex not working on add item form
+        ZStack {
+            Button(action: {
+                self.shouldShowDropdown.toggle()
+            }) {
+                HStack {
+                    Text(selectedOption == nil ? options[0].value : selectedOption!.value)
+                        .font(CustomFont.bodyRegular)
+                        .foregroundColor(Color.black)
 
-                Spacer()
+                    Spacer()
 
-                Image(systemName: self.shouldShowDropdown ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
-                    .resizable()
-                    .frame(width: 15, height: 10)
-                    .foregroundColor(Color("action"))
-            }
-        }
-        .padding(.init(top: 20, leading: 24, bottom: 20, trailing: 24))
-        .background(Color.white.cornerRadius(16)
-                        .shadow(color: Color("shadow"), radius: 12, x:0, y:4))
-        .overlay(
-            VStack {
-                if self.shouldShowDropdown {
-                    Spacer(minLength: rowHeight) // hardcoded for now. not sure how to get lineheight
-                    DropdownList(options: self.options, onOptionSelected: { option in
-                        shouldShowDropdown = false
-                        selectedOption = option
-                        self.onOptionSelected?(option)
-                    }, rowHeight: rowHeight)
+                    Image(systemName: self.shouldShowDropdown ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                        .resizable()
+                        .frame(width: 15, height: 10)
+                        .foregroundColor(Color("action"))
                 }
-            }, alignment: .topLeading
-        )
+            }
+            .padding(.init(top: 20, leading: 24, bottom: 20, trailing: 24))
+            .background(Color.white.cornerRadius(16)
+                            .shadow(color: Color("shadow"), radius: 12, x:0, y:4))
+            .overlay(
+                VStack {
+                    if self.shouldShowDropdown {
+                        Spacer(minLength: rowHeight) // hardcoded for now. not sure how to get lineheight
+                        DropdownList(options: self.options, onOptionSelected: { option in
+                            shouldShowDropdown = false
+                            selectedOption = option
+                            self.onOptionSelected?(option)
+                        }, rowHeight: rowHeight)
+                    }
+                }, alignment: .topLeading
+            )
+        }.zIndex(1)
     }
 }
 
@@ -114,10 +117,11 @@ struct Dropdown_Previews: PreviewProvider {
     ]
     
     static var previews: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+        VStack {
             Dropdown(options: options, onOptionSelected: { option in
-                        print(option)})
+                            print(option)})
+            
+            Input(label: "Food name", placeholder: "Enter name of food", text: .constant("Tests"))
         }
     }
 }

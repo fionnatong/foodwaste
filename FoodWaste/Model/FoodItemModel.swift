@@ -10,6 +10,7 @@ import SwiftUI
 struct FoodItem: Codable, Identifiable {
     var id: String?
     var name: String
+    var type: String
     var quantity: Int
     var weight: String
     var halal: Bool

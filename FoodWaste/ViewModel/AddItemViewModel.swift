@@ -16,6 +16,7 @@ class AddItemViewModel: ObservableObject {
     init (initialValue: FoodItem?){
         guard let initialItem = initialValue  else {
             self.foodItem = FoodItem(name: "",
+                                     type: "",
                                      quantity: 0,
                                      weight: "",
                                      halal: false,
@@ -29,6 +30,10 @@ class AddItemViewModel: ObservableObject {
     }
     
     func updateName(_ newValue: String) {
+        foodItem.name = newValue
+    }
+    
+    func updateType(_ newValue: String) {
         foodItem.name = newValue
     }
     
@@ -52,7 +57,7 @@ class AddItemViewModel: ObservableObject {
         
         // new food item
         guard foodItem.id != nil else {
-            ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate, "bizUen": foodItem.bizUen, "postalCode": foodItem.postalCode]) { err in
+            ref = db.collection(FOOD_COLLECTION).addDocument(data: ["name": foodItem.name, "type": foodItem.type, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate, "bizUen": foodItem.bizUen, "postalCode": foodItem.postalCode]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                     onCompleted(false)
@@ -66,7 +71,7 @@ class AddItemViewModel: ObservableObject {
         }
         
         // update existing food item
-        db.collection(FOOD_COLLECTION).document(foodItem.id!).updateData(["name": foodItem.name, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate]) { err in
+        db.collection(FOOD_COLLECTION).document(foodItem.id!).updateData(["name": foodItem.name, "type": foodItem.type, "quantity": foodItem.quantity, "weight": foodItem.weight, "halal": foodItem.halal, "expiry": mockExpiryDate, "bizUen": foodItem.bizUen, "postalCode": foodItem.postalCode]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
                 onCompleted(false)

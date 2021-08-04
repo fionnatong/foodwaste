@@ -54,9 +54,9 @@ struct ItemCard: View {
 struct ItemCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111"))
+            ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111"))
             
-            BusinessCard(basket: FoodBasket(business: BusinesssDetailsModel(bizName: "Company 1"), foodItems: [FoodItem(id: "1234", name: "Royal Rice", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "10 - 15 days"))
+            BusinessCard(basket: FoodBasket(business: BusinesssDetailsModel(bizName: "Company 1"), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries",quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "10 - 15 days"))
         }
     }
 }
