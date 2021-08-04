@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct FoodBasketsView: View {
-    @ObservedObject private var viewModel = FoodShelfViewModel()
     @ObservedObject private var basketViewModel = FoodBasketsViewModel()
     @State private var recipientAddress = UserDefaults.standard.string(forKey: "RecipientAddress")
     @State private var businessPostalCode: String = "608536" // TODO: remove hardcode later
@@ -33,8 +32,7 @@ struct FoodBasketsView: View {
                     }
                 }
                 .onAppear() {
-//                    self.viewModel.getFoodItems()
-                    self.basketViewModel.getAllBusinessInfo(onComplete: nil)
+                    self.basketViewModel.getBusinessInfo(onComplete: nil)
                 }
                 .padding(.horizontal, 16)
             }
