@@ -3,6 +3,7 @@ import SwiftUI
 struct BusinessFoodView: View {
     var business: BusinesssDetailsModel
     var foodItems: [FoodItem]
+    var initialSelectedFoodItems: Set<String>?
     @State private var selectedFoodItems: Set = Set<String>()
     @State private var enableButton: Bool = false;
     @State private var showCollectionTime: Bool = false
@@ -19,6 +20,10 @@ struct BusinessFoodView: View {
         } else {
             enableButton = false
         }
+    }
+    
+    func initSelectedItems() {
+        selectedFoodItems = initialSelectedFoodItems ?? []
     }
     
     var body: some View {
@@ -48,9 +53,11 @@ struct BusinessFoodView: View {
                                     .stroke(CustomColor.primary, lineWidth: selectedFoodItems.contains(item.id!) ? 3 : 0))
                     }
                 }
+                .onAppear {
+                    initSelectedItems()
+                }
                 
-                // TODO: add view
-                NavigationLink(destination: CollectionDateView(business: business, foodItems: foodItems), isActive: $showCollectionTime) { EmptyView () }
+                NavigationLink(destination: CollectionDateView(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems), isActive: $showCollectionTime) { EmptyView () }
                 Button("Next: Select collection time") {
                     self.showCollectionTime = true
                 }

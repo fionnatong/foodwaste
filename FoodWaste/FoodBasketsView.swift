@@ -33,8 +33,8 @@ struct FoodBasketsView: View {
                     }
                 }
                 .onAppear() {
-                    self.viewModel.getFoodItems()
-                    self.basketViewModel.getBusinessInfo(onComplete: nil)
+//                    self.viewModel.getFoodItems()
+                    self.basketViewModel.getAllBusinessInfo(onComplete: nil)
                 }
                 .padding(.horizontal, 16)
             }

@@ -3,6 +3,7 @@ import SwiftUI
 struct CollectionDateView: View {
     var business: BusinesssDetailsModel
     var foodItems: [FoodItem]
+    var selectedFoodItems: Set = Set<String>()
     @State private var selectedDate = Date()
     @State private var goToReview: Bool = false
     
@@ -59,7 +60,7 @@ struct CollectionDateView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: ReviewOrder(business: business, selectedFoodItems: foodItems, selectedDate: selectedDate), isActive: $goToReview) { EmptyView () }
+                NavigationLink(destination: ReviewOrder(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate), isActive: $goToReview) { EmptyView () }
                 Button("Review details") {
                     self.goToReview = true
                 }
@@ -73,6 +74,6 @@ struct CollectionDateView: View {
 
 struct CollectionDateView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionDateView(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")])
+        CollectionDateView(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"])
     }
 }

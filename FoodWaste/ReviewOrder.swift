@@ -10,11 +10,18 @@ import SwiftUI
 // @TODO update hardcoded date after preivous page is done
 struct ReviewOrder: View {
     var business: BusinesssDetailsModel
-    var selectedFoodItems: [FoodItem]
+    var foodItems: [FoodItem]
+    var selectedFoodItems: Set = Set<String>()
     var selectedDate: Date
+    @State private var renderableSelectedFoodItems: [FoodItem] = []
     
     let calendar = Calendar.current
     
+    func initFoodItems() {
+        renderableSelectedFoodItems = foodItems.filter { item in
+            return selectedFoodItems.contains(item.id!)
+        }
+    }
     var body: some View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
@@ -26,12 +33,16 @@ struct ReviewOrder: View {
                     ReviewDonorDetails(business: business)
                         .padding(.bottom, 16)
                     
-                    ReviewSelecedItems(business: business, selectedFoodItems: selectedFoodItems)
+                    ReviewSelecedItems(business: business, foodItems: foodItems, renderableItems: renderableSelectedFoodItems, selectedFoodItems: selectedFoodItems)
                         .padding(.bottom, 16)
+                        
                     
                     ReviewCollectionDate()
                 }
                 .padding(.horizontal, 16)
+            }
+            .onAppear {
+                initFoodItems()
             }
         }
     }
@@ -39,7 +50,7 @@ struct ReviewOrder: View {
 
 struct ReviewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), selectedFoodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedDate: Date())
+        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"], selectedDate: Date())
     }
 }
 
@@ -96,7 +107,9 @@ struct ReviewDonorDetails: View {
 
 struct ReviewSelecedItems: View {
     var business: BusinesssDetailsModel
-    var selectedFoodItems: [FoodItem]
+    var foodItems: [FoodItem]
+    var renderableItems: [FoodItem]
+    var selectedFoodItems: Set = Set<String>()
     let calendar = Calendar.current
     
     var body: some View {
@@ -109,11 +122,13 @@ struct ReviewSelecedItems: View {
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 20)
                     Spacer()
-                    NavigationLink("Edit", destination: BusinessFoodView(business: business, foodItems: selectedFoodItems))
+                    
+                    // not the best solution for edit. will create many layers
+                    NavigationLink("Edit", destination: BusinessFoodView(business: business, foodItems: foodItems, initialSelectedFoodItems: selectedFoodItems))
                 }
                 
                 
-                ForEach(selectedFoodItems) { item in
+                ForEach(renderableItems) { item in
                     VStack(alignment: .leading) {
                         HStack {
                             Text("\(item.name)")
@@ -124,7 +139,7 @@ struct ReviewSelecedItems: View {
                                 .font(CustomFont.bodySemibold)
                                 .foregroundColor(CustomColor.primary)
                         }
-                        
+
                         HStack {
                             Text("\(item.weight.isEmpty ? "No weight specified" : item.weight) • \(item.halal ? "Halal" : "Non-halal")")
                                 .font(CustomFont.caption)
@@ -145,7 +160,7 @@ struct ReviewSelecedItems: View {
                     .padding(.bottom, 20)
                 }
                 
-                Text("Total: \(getTotalWeight(items: selectedFoodItems))kg • \(selectedFoodItems.count) \(selectedFoodItems.count > 1 ? "items" : "item")")
+                Text("Total: \(getTotalWeight(items: renderableItems))kg • \(renderableItems.count) \(renderableItems.count > 1 ? "items" : "item")")
                     .font(CustomFont.caption)
                     .foregroundColor(Color("gray-two"))
             }
