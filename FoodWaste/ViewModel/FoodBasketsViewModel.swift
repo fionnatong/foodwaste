@@ -53,6 +53,8 @@ class FoodBasketsViewModel: ObservableObject {
                 return
             }
             
+            foodBaskets = []
+            
             bizDocuments.forEach { (document) -> Void in
                 let data = try! JSONSerialization.data(withJSONObject: document.data(), options: JSONSerialization.WritingOptions.prettyPrinted)
                 let businessDetails = try! JSONDecoder().decode(BusinesssDetailsModel.self, from: data)
