@@ -40,37 +40,37 @@ struct AddFoodItem: View {
     var body: some View {
         ZStack(alignment: .topLeading){
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
-            VStack {
-                VStack(alignment: .leading, spacing: 24) {
-                    Text("Add food item").font(CustomFont.headerOne)
+            Group {
+                VStack(alignment: .leading) {
+                    Text("Add food item").font(CustomFont.headerOne).padding(.bottom, 24)
                     Input(label: "Food Name",  placeholder: "Enter the name of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.name },
                         set: { [viewModel] in viewModel.updateName($0) }
-                    ))
+                    )).padding(.bottom, 24)
                     
-                    VStack(alignment: .leading) {
-                        Text("Food Type")
-                            .font(CustomFont.bodyMedium)
-                            .lineLimit(1)
-                        Dropdown(options: options, onOptionSelected: { option in
-                            viewModel.updateType(option.value)
-                        })
-                    }
+                    Text("Food Type")
+                        .font(CustomFont.bodyMedium)
+                        .lineLimit(1)
+                    Dropdown(options: options, onOptionSelected: { option in
+                        viewModel.updateType(option.value)
+                    }).padding(.bottom, 24)
                     
                     Input(label: "Quantity",  placeholder: "Enter the quantity of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.quantity == 0 ? "" : String(viewModel.foodItem.quantity) },
                         set: { [viewModel] in viewModel.updateQuantity($0) }
                     ))
+                    .padding(.bottom, 24)
                     Input(label: "Weight per item",  placeholder: "Enter the weight of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.weight },
                         set: { [viewModel] in viewModel.updateWeight($0) }
                     ))
+                    .padding(.bottom, 24)
                     // TODO: add expiry date datepicker
                     Checkbox(title: "Halal", isChecked: Binding<Bool>(
                         get: { return self.viewModel.foodItem.halal},
                         set: { p in self.viewModel.foodItem.halal = p}
                     ))
-                    VStack {
+                    Group {
                         Button("Add item") {
                             self.addItem()
                         }.buttonStyle(PrimaryButtonStyle())
