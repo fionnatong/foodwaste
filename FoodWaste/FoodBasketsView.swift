@@ -3,7 +3,6 @@ import SwiftUI
 struct FoodBasketsView: View {
     @ObservedObject private var basketViewModel = FoodBasketsViewModel()
     @State private var recipientAddress = UserDefaults.standard.string(forKey: "RecipientAddress")
-    @State private var businessPostalCode: String = "608536" // TODO: remove hardcode later
     @State private var enableButton: Bool = false;
     
     var body: some View {
@@ -26,7 +25,7 @@ struct FoodBasketsView: View {
                         .foregroundColor(Color("gray-two"))
                     
                     ForEach(self.basketViewModel.foodBaskets) { basket in
-                        NavigationLink(destination: BusinessFoodView(business: basket.business, foodItems: basket.foodItems)) {
+                        NavigationLink(destination: BusinessFoodView(basket: basket)) {
                             BusinessCard(basket: basket)
                         }
                     }

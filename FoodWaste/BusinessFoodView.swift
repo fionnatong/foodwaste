@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct BusinessFoodView: View {
-    var business: BusinesssDetailsModel
-    var foodItems: [FoodItem]
+    var basket: FoodBasket
     var initialSelectedFoodItems: Set<String>?
     @State private var selectedFoodItems: Set = Set<String>()
     @State private var enableButton: Bool = false;
@@ -31,21 +30,21 @@ struct BusinessFoodView: View {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text(business.bizName)
+                    Text(basket.business.bizName)
                         .font(CustomFont.headerOne)
                     Spacer()
                     Text("filter here")
                 }
                 
-                Text(business.bizAdd)
+                Text(basket.business.bizAdd)
                     .font(CustomFont.bodyRegular)
                 
                 // TODO: add distance by calculating coordinates
-                Text("\(foodItems.count) groceries • 0.80 km")
+                Text("\(basket.foodItems.count) groceries • \(basket.distToBusiness) km")
                     .font(CustomFont.bodyRegular)
                 
                 ScrollView {
-                    ForEach(foodItems) { item in
+                    ForEach(basket.foodItems) { item in
                         Button(action: { toggle(itemId: item.id!) }) {
                             ItemCard(item: item)
                         }
@@ -57,7 +56,7 @@ struct BusinessFoodView: View {
                     initSelectedItems()
                 }
                 
-                NavigationLink(destination: CollectionDateView(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems), isActive: $showCollectionTime) { EmptyView () }
+                NavigationLink(destination: CollectionDateView(basket: basket, selectedFoodItems: selectedFoodItems), isActive: $showCollectionTime) { EmptyView () }
                 Button("Next: Select collection time") {
                     self.showCollectionTime = true
                 }
@@ -71,6 +70,6 @@ struct BusinessFoodView: View {
 
 struct BusinessFoodView_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessFoodView(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")])
+        BusinessFoodView(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"))
     }
 }

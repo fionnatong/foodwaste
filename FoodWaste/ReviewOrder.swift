@@ -9,8 +9,7 @@ import SwiftUI
 
 // @TODO update hardcoded date after preivous page is done
 struct ReviewOrder: View {
-    var business: BusinesssDetailsModel
-    var foodItems: [FoodItem]
+    var basket: FoodBasket
     var selectedFoodItems: Set = Set<String>()
     var selectedDate: Date
     @State private var renderableSelectedFoodItems: [FoodItem] = []
@@ -19,7 +18,7 @@ struct ReviewOrder: View {
     let calendar = Calendar.current
     
     func initFoodItems() {
-        renderableSelectedFoodItems = foodItems.filter { item in
+        renderableSelectedFoodItems = basket.foodItems.filter { item in
             return selectedFoodItems.contains(item.id!)
         }
     }
@@ -31,13 +30,14 @@ struct ReviewOrder: View {
                     Text("Review").font(CustomFont.headerOne)
                         .padding(.bottom, 16)
                     
-                    ReviewDonorDetails(business: business)
+                    ReviewDonorDetails(business: basket.business)
                         .padding(.bottom, 16)
                     
-                    ReviewSelecedItems(business: business, foodItems: foodItems, renderableItems: renderableSelectedFoodItems, selectedFoodItems: selectedFoodItems)
+                    ReviewSelecedItems(basket: basket, renderableItems: renderableSelectedFoodItems, selectedFoodItems: selectedFoodItems)
                         .padding(.bottom, 16)
                         
                     
+                    ReviewCollectionDate(basket: basket, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
                     ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
                     
                     Spacer()
@@ -59,7 +59,7 @@ struct ReviewOrder: View {
 
 struct ReviewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date().addingTimeInterval(400)), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"], selectedDate: Date())
+        ReviewOrder(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), selectedFoodItems: ["1234"], selectedDate: Date())
     }
 }
 
@@ -115,8 +115,7 @@ struct ReviewDonorDetails: View {
 }
 
 struct ReviewSelecedItems: View {
-    var business: BusinesssDetailsModel
-    var foodItems: [FoodItem]
+    var basket: FoodBasket
     var renderableItems: [FoodItem]
     var selectedFoodItems: Set = Set<String>()
     let calendar = Calendar.current
@@ -133,7 +132,7 @@ struct ReviewSelecedItems: View {
                     Spacer()
                     
                     // not the best solution for edit. will create many layers
-                    NavigationLink("Edit", destination: BusinessFoodView(business: business, foodItems: foodItems, initialSelectedFoodItems: selectedFoodItems))
+                    NavigationLink("Edit", destination: BusinessFoodView(basket: basket, initialSelectedFoodItems: selectedFoodItems))
                         .foregroundColor(Color("action"))
                 }
                 
@@ -184,8 +183,7 @@ struct ReviewSelecedItems: View {
 }
 
 struct ReviewCollectionDate: View {
-    var business: BusinesssDetailsModel
-    var foodItems: [FoodItem]
+    var basket: FoodBasket
     var selectedFoodItems: Set = Set<String>()
     var selectedDate: Date
     
@@ -201,7 +199,7 @@ struct ReviewCollectionDate: View {
                     
                     Spacer()
                     // not the best solution for edit. will create many layers
-                    NavigationLink("Edit", destination: CollectionDateView(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems))
+                    NavigationLink("Edit", destination: CollectionDateView(basket: basket, selectedFoodItems: selectedFoodItems))
                         .foregroundColor(Color("action"))
                 }
                 
@@ -210,7 +208,7 @@ struct ReviewCollectionDate: View {
                         .font(CustomFont.headerFour)
                         .foregroundColor(Color.black)
                         .padding(.bottom, 8)
-                    Text("\(formatOperatingHours(startTime: business.startTime, endTime: business.endTime))")
+                    Text("\(formatOperatingHours(startTime: basket.business.startTime, endTime: basket.business.endTime))")
                         .font(CustomFont.bodyRegular)
                         .foregroundColor(Color.black)
                 }

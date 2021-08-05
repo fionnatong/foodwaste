@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct CollectionDateView: View {
-    var business: BusinesssDetailsModel
-    var foodItems: [FoodItem]
+    var basket: FoodBasket
     var selectedFoodItems: Set = Set<String>()
     @State private var collectionRange = Date()...
     @State private var selectedDate = Date()
@@ -11,7 +10,7 @@ struct CollectionDateView: View {
     
     var availableDaysStr: String {
         var days: [String] = []
-        business.dayAvailabilites.forEach { (key: String, value: Bool) in
+        basket.business.dayAvailabilites.forEach { (key: String, value: Bool) in
             if(value) {
                 days.append(key)
             }
@@ -27,10 +26,10 @@ struct CollectionDateView: View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 18) {
-                Text(business.bizName)
+                Text(basket.business.bizName)
                     .font(CustomFont.headerOne)
                 
-                Text(business.bizAdd)
+                Text(basket.business.bizAdd)
                     .font(CustomFont.bodyRegular)
                 VStack(alignment: .leading) {
                     Text("Select Collection Date")
@@ -45,12 +44,12 @@ struct CollectionDateView: View {
                         .accentColor(CustomColor.primary)
                         .padding(.horizontal, 16)
                         .onChange(of: selectedDate, perform: { newSelectedDate in
-                            if (!business.foodCanBeCollected(on: newSelectedDate)) {
+                            if (!basket.business.foodCanBeCollected(on: newSelectedDate)) {
                                 showDateNotAvailableAlert = true
                             }
                         })
                         .onAppear(perform: {
-                            selectedDate = business.nextAvailableDateFoodCanBeCollected(from: Date())
+                            selectedDate = basket.business.nextAvailableDateFoodCanBeCollected(from: Date())
                             collectionRange = selectedDate...
                         })
                     VStack(alignment: .leading) {
@@ -60,9 +59,9 @@ struct CollectionDateView: View {
                             .padding(.horizontal, 16)
                         
                         HStack {
-                            Text(business.startTime, style: .time)
+                            Text(basket.business.startTime, style: .time)
                             Text("-")
-                            Text(business.endTime, style: .time)
+                            Text(basket.business.endTime, style: .time)
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 16)
@@ -73,7 +72,7 @@ struct CollectionDateView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: ReviewOrder(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate), isActive: $goToReview) { EmptyView () }
+                NavigationLink(destination: ReviewOrder(basket: basket, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate), isActive: $goToReview) { EmptyView () }
                 Button("Review details") {
                     self.goToReview = true
                 }
@@ -86,7 +85,7 @@ struct CollectionDateView: View {
             return Alert(title: Text("Donor is only free on \(availableDaysStr)"),
                          message: Text("The next available date will be selected for you"),
                          dismissButton: .default(Text("Got it"), action: {
-                            selectedDate = business.nextAvailableDateFoodCanBeCollected(from: selectedDate)
+                            selectedDate = basket.business.nextAvailableDateFoodCanBeCollected(from: selectedDate)
                          }))
         })
     }
@@ -94,6 +93,6 @@ struct CollectionDateView: View {
 
 struct CollectionDateView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionDateView(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"])
+        CollectionDateView(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), selectedFoodItems: ["1234"])
     }
 }
