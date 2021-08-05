@@ -1,6 +1,10 @@
 import SwiftUI
 
 struct OrderConfirmationView: View {
+    var basket: FoodBasket
+    var totalWeight: String
+    var selectedDate: Date
+    
     var body: some View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
@@ -10,11 +14,11 @@ struct OrderConfirmationView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 8)
                 
-                Text("by FairPrice Xtra (VivoCity)")
+                Text("by \(basket.business.bizName)")
                     .font(CustomFont.bodyMedium)
                     .padding(.bottom, 32)
                 
-                Text("Instead of food waste, you just turned 10.5kg of food into meals for the needy!")
+                Text("Instead of food waste, you just turned \(totalWeight)kg of food into meals for the needy!")
                     .font(CustomFont.bodyRegular)
                     .multilineTextAlignment(.center)
                 
@@ -30,27 +34,27 @@ struct OrderConfirmationView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Address")
                                 .font(CustomFont.bodyTwoRegular)
-                            Text("FairPrice Xtra (Vivo City)")
+                            Text("\(basket.business.bizName)")
                                 .font(CustomFont.headerFour)
-                            Text("#01-23, 1 HarbourFront Walk, Singapore 098585")
+                            Text("\(basket.business.bizAdd)")
                                 .font(CustomFont.headerFour)
                                 .fixedSize(horizontal: false, vertical: true)
                                 
                         }
-                        
+//                        
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Distance from Organisation")
                                 .font(CustomFont.bodyTwoRegular)
-                            Text("0.80 km")
+                            Text("\(basket.distToBusiness) km")
                                 .font(CustomFont.headerFour)
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Collection Time")
                                 .font(CustomFont.bodyTwoRegular)
-                            Text("Friday, 5 August 2021")
+                            Text("\(formatCollectionDate(inputDate: selectedDate))")
                                 .font(CustomFont.headerFour)
-                            Text("9:00am - 5:30pm")
+                            Text("\(formatOperatingHours(startTime: basket.business.startTime, endTime: basket.business.endTime))")
                                 .font(CustomFont.headerFour)
                         }
                         .padding(.bottom, 16)
@@ -81,6 +85,6 @@ struct OrderConfirmationView: View {
 
 struct OrderConfirmationView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderConfirmationView()
+        OrderConfirmationView(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), totalWeight: "12", selectedDate: Date())
     }
 }

@@ -14,6 +14,7 @@ struct ReviewOrder: View {
     var selectedDate: Date
     @State private var renderableSelectedFoodItems: [FoodItem] = []
     @State private var showConfirmation: Bool = false
+    @State private var selectedFoodWeight: String = ""
     
     let calendar = Calendar.current
     
@@ -21,6 +22,8 @@ struct ReviewOrder: View {
         renderableSelectedFoodItems = basket.foodItems.filter { item in
             return selectedFoodItems.contains(item.id!)
         }
+        
+        selectedFoodWeight = getTotalWeight(items: renderableSelectedFoodItems)
     }
     var body: some View {
         ZStack {
@@ -33,20 +36,20 @@ struct ReviewOrder: View {
                     ReviewDonorDetails(business: basket.business)
                         .padding(.bottom, 16)
                     
-                    ReviewSelecedItems(basket: basket, renderableItems: renderableSelectedFoodItems, selectedFoodItems: selectedFoodItems)
+                    ReviewSelecedItems(basket: basket, renderableItems: renderableSelectedFoodItems, selectedFoodItems: selectedFoodItems, totalWeight: selectedFoodWeight)
                         .padding(.bottom, 16)
                         
                     
                     ReviewCollectionDate(basket: basket, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
-                    ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
                     
                     Spacer()
                     
-                    NavigationLink(destination: OrderConfirmationView(), isActive: $showConfirmation) { EmptyView() }
+                    NavigationLink(destination: OrderConfirmationView(basket: basket, totalWeight: selectedFoodWeight, selectedDate: selectedDate), isActive: $showConfirmation) { EmptyView() }
                     Button("Confirm") {
                         self.showConfirmation = true
                     }
                     .buttonStyle(PrimaryButtonStyle())
+                    .padding(.top, 40)
                 }
                 .padding(.horizontal, 16)
             }
@@ -118,6 +121,7 @@ struct ReviewSelecedItems: View {
     var basket: FoodBasket
     var renderableItems: [FoodItem]
     var selectedFoodItems: Set = Set<String>()
+    var totalWeight: String
     let calendar = Calendar.current
     
     var body: some View {
@@ -169,7 +173,7 @@ struct ReviewSelecedItems: View {
                     .padding(.bottom, 20)
                 }
                 
-                Text("Total: \(getTotalWeight(items: renderableItems))kg • \(renderableItems.count) \(renderableItems.count > 1 ? "items" : "item")")
+                Text("Total: \(totalWeight)kg • \(renderableItems.count) \(renderableItems.count > 1 ? "items" : "item")")
                     .font(CustomFont.caption)
                     .foregroundColor(Color("gray-two"))
             }
@@ -204,7 +208,7 @@ struct ReviewCollectionDate: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("\(formatDate(inputDate: selectedDate))")
+                    Text("\(formatCollectionDate(inputDate: selectedDate))")
                         .font(CustomFont.headerFour)
                         .foregroundColor(Color.black)
                         .padding(.bottom, 8)
@@ -233,7 +237,7 @@ func getTotalWeight (items: [FoodItem]) -> String {
     return String(totalWeight)
 }
 
-func formatDate (inputDate: Date) -> String {
+func formatCollectionDate (inputDate: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "EEEE, d MMMM yyyy"
     return formatter.string(from: inputDate)
