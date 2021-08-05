@@ -34,7 +34,7 @@ class AddItemViewModel: ObservableObject {
     }
     
     func updateType(_ newValue: String) {
-        foodItem.name = newValue
+        foodItem.type = newValue
     }
     
     func updateQuantity(_ newValue: String) {

@@ -88,7 +88,6 @@ class FoodBasketsViewModel: ObservableObject {
     }
     
     func getDistanceToBusiness(businessPostalCode: String, onComplete completionHandler: ((_ distance: Double) -> Void)?) {
-        print("getDistanceToBusiness")
         let userPostalCode = UserDefaults.standard.string(forKey: "RecipientPostalCode")
         var userCoordinates: CLLocationCoordinate2D? = nil
         var businessCoordinates: CLLocationCoordinate2D? = nil
