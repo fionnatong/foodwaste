@@ -14,6 +14,7 @@ struct ReviewOrder: View {
     var selectedFoodItems: Set = Set<String>()
     var selectedDate: Date
     @State private var renderableSelectedFoodItems: [FoodItem] = []
+    @State private var showConfirmation: Bool = false
     
     let calendar = Calendar.current
     
@@ -38,6 +39,14 @@ struct ReviewOrder: View {
                         
                     
                     ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: OrderConfirmationView(), isActive: $showConfirmation) { EmptyView() }
+                    Button("Confirm") {
+                        self.showConfirmation = true
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
                 }
                 .padding(.horizontal, 16)
             }

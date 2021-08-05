@@ -73,6 +73,7 @@ struct OrderConfirmationView: View {
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
+            .navigationBarHidden(true)
             .padding(.horizontal, 16)
         }
     }
