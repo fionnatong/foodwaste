@@ -28,16 +28,16 @@ struct ContentView: View {
                         .padding(.top, 70)
                         .padding(.bottom, 24)
                     
-                    if isOnboarded {
-                        NavigationLink("Skip to inventory", destination: FoodShelfView())
-                        NavigationLink("Skip to basket", destination: FoodBasketsView())
-                        Button("Reset onboarded value") {
-                            resetOnboarded()
-                            isOnboarded = false
-                        }
-                    } else {
+//                    if isOnboarded {
+//                        NavigationLink("Skip to inventory", destination: FoodShelfView())
+//                        NavigationLink("Skip to basket", destination: FoodBasketsView())
+//                        Button("Reset onboarded value") {
+//                            resetOnboarded()
+//                            isOnboarded = false
+//                        }
+//                    } else {
                         NewUserView()
-                    }
+//                    }
                 }
                 .padding(.top, 100)
                 .padding(.horizontal, 14)
