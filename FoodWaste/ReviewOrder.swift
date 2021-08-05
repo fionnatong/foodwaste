@@ -50,7 +50,7 @@ struct ReviewOrder: View {
 
 struct ReviewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"], selectedDate: Date())
+        ReviewOrder(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date().addingTimeInterval(400)), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], selectedFoodItems: ["1234"], selectedDate: Date())
     }
 }
 
@@ -201,7 +201,7 @@ struct ReviewCollectionDate: View {
                         .font(CustomFont.headerFour)
                         .foregroundColor(Color.black)
                         .padding(.bottom, 8)
-                    Text("9:30am - 10:00am")
+                    Text("\(formatOperatingHours(startTime: business.startTime, endTime: business.endTime))")
                         .font(CustomFont.bodyRegular)
                         .foregroundColor(Color.black)
                 }
@@ -231,3 +231,13 @@ func formatDate (inputDate: Date) -> String {
     formatter.dateFormat = "EEEE, d MMMM yyyy"
     return formatter.string(from: inputDate)
 }
+
+func formatOperatingHours (startTime: Date, endTime: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "HH:mma"
+    formatter.amSymbol = "am"
+    formatter.pmSymbol = "pm"
+    
+    return "\(formatter.string(from: startTime)) - \(formatter.string(from: endTime))"
+}
+
