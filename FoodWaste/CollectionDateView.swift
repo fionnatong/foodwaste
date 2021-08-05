@@ -4,22 +4,24 @@ struct CollectionDateView: View {
     var business: BusinesssDetailsModel
     var foodItems: [FoodItem]
     var selectedFoodItems: Set = Set<String>()
+    @State private var collectionRange = Date()...
     @State private var selectedDate = Date()
     @State private var goToReview: Bool = false
+    @State private var showDateNotAvailableAlert = false
     
-    // TODO: how to disable certain days?
-    let dateRange: ClosedRange<Date> = {
-        let calendar = Calendar.current
-        let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        let endDate = Calendar.current.dateComponents([.year, .month, .day], from: Date(timeIntervalSinceNow: 604800)) // 1 week
-        
-        let startComponents = DateComponents(year: today.year, month: today.month, day: today.day)
-        let endComponents = DateComponents(year: endDate.year, month: endDate.month, day: endDate.day)
-        
-        return calendar.date(from:startComponents)!
-            ...
-            calendar.date(from:endComponents)!
-    }()
+    var availableDaysStr: String {
+        var days: [String] = []
+        business.dayAvailabilites.forEach { (key: String, value: Bool) in
+            if(value) {
+                days.append(key)
+            }
+        }
+        var formattedDaysStr = ""
+        days.forEach { day in
+            formattedDaysStr += "\(day), "
+        }
+        return String(String(formattedDaysStr.dropLast()).dropLast())
+    }
     
     var body: some View {
         ZStack {
@@ -30,16 +32,27 @@ struct CollectionDateView: View {
                 
                 Text(business.bizAdd)
                     .font(CustomFont.bodyRegular)
-                
-                Text("Select Collection Date")
-                    .font(CustomFont.headerThree)
+                VStack(alignment: .leading) {
+                    Text("Select Collection Date")
+                        .font(CustomFont.headerThree)
+                    Text("* Donor is only available on \(availableDaysStr)")
+                        .font(CustomFont.caption)
+                }
                 
                 VStack(alignment: .leading, spacing: 24) {
-                    DatePicker("Select Collection Date", selection: $selectedDate, in: dateRange, displayedComponents: .date)
+                    DatePicker("Select Collection Date", selection: $selectedDate, in: collectionRange, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .accentColor(CustomColor.primary)
                         .padding(.horizontal, 16)
-                    
+                        .onChange(of: selectedDate, perform: { newSelectedDate in
+                            if (!business.foodCanBeCollected(on: newSelectedDate)) {
+                                showDateNotAvailableAlert = true
+                            }
+                        })
+                        .onAppear(perform: {
+                            selectedDate = business.nextAvailableDateFoodCanBeCollected(from: Date())
+                            collectionRange = selectedDate...
+                        })
                     VStack(alignment: .leading) {
                         Text("Time")
                             .font(CustomFont.headerThree)
@@ -69,6 +82,13 @@ struct CollectionDateView: View {
             .padding(.horizontal, 16)
             // TODO: custom back button text?
         }
+        .alert(isPresented: $showDateNotAvailableAlert, content: {
+            return Alert(title: Text("Donor is only free on \(availableDaysStr)"),
+                         message: Text("The next available date will be selected for you"),
+                         dismissButton: .default(Text("Got it"), action: {
+                            selectedDate = business.nextAvailableDateFoodCanBeCollected(from: selectedDate)
+                         }))
+        })
     }
 }
 
