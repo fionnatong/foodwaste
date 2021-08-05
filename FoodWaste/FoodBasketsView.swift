@@ -4,38 +4,38 @@ struct FoodBasketsView: View {
     @ObservedObject private var basketViewModel = FoodBasketsViewModel()
     @State private var recipientAddress = UserDefaults.standard.string(forKey: "RecipientAddress")
     @State private var enableButton: Bool = false;
+    private var numOfItems: Int {
+        basketViewModel.foodBaskets.reduce(0) { result, foodBasket in
+            result + foodBasket.foodItems.count
+        }
+    }
+    
     
     var body: some View {
-//        Text("TODO: FOOD BASKETS LIST")
-        // get user object to display address (done)
-        // get business info (put to dummy postal code for now)
-        // sort by expiry
-        ZStack{
-            CustomColor.secondary.edgesIgnoringSafeArea(.all)
-            ScrollView{
-                VStack(alignment: .leading) {
-                    Text("Food baskets")
-                        .font(CustomFont.headerOne)
-                    Text("Showing 10 food types near you")
-                        .font(CustomFont.bodyRegular)
-                    Text("\(recipientAddress ?? "")")
-                        .font(CustomFont.headerFour)
-                    Text("10 groceries • 0.80km")
-                        .font(CustomFont.bodyTwoRegular)
-                        .foregroundColor(Color("gray-two"))
-                    
-                    ForEach(self.basketViewModel.foodBaskets) { basket in
-                        NavigationLink(destination: BusinessFoodView(basket: basket)) {
-                            BusinessCard(basket: basket)
-                        }
+        ScrollView {
+            VStack (alignment: .leading, spacing: nil) {
+                Text("Food baskets")
+                    .font(CustomFont.headerOne)
+                    .padding(.bottom, 24)
+                Text("Showing \(numOfItems) food types near you")
+                    .font(CustomFont.bodyRegular)
+                    .padding(.bottom, 24)
+                
+                ForEach(self.basketViewModel.foodBaskets) { basket in
+                    NavigationLink(destination: BusinessFoodView(basket: basket)) {
+                        BusinessCard(basket: basket)
                     }
                 }
-                .onAppear() {
-                    self.basketViewModel.getBusinessInfo(onComplete: nil)
-                }
-                .padding(.horizontal, 16)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.init(top: 68, leading: 16, bottom: 16, trailing: 16))
+            .background(CustomColor.secondary)
         }
+        .onAppear() {
+            self.basketViewModel.getBusinessInfo(onComplete: nil)
+        }
+        .background(CustomColor.secondary)
+        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
     }
 }
