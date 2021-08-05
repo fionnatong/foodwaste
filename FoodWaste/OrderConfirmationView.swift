@@ -5,6 +5,8 @@ struct OrderConfirmationView: View {
     var totalWeight: String
     var selectedDate: Date
     
+    @State private var returnToList: Bool = false
+    
     var body: some View {
         ZStack {
             CustomColor.secondary.edgesIgnoringSafeArea(.all)
@@ -72,8 +74,10 @@ struct OrderConfirmationView: View {
                     .padding(.bottom, 40)
                 
                 // TODO: pop back to root navigation
+                NavigationLink(destination: FoodBasketsView(), isActive: $returnToList) {EmptyView()}
+                    .foregroundColor(Color("action"))
                 Button("Go to Food Baskets") {
-                    print("hehe")
+                    self.returnToList = true
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }

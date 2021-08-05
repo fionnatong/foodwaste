@@ -112,6 +112,11 @@ class FoodBasketsViewModel: ObservableObject {
                 }
                 businessCoordinates = coordinate
                 
+                guard businessCoordinates != nil, userCoordinates != nil else {
+                    completionHandler?(0.0)
+                    return
+                }
+                
                 distance = CoordinatesHelper.getDistance(pointOne: userCoordinates!, pointTwo: businessCoordinates!)
                 
                 completionHandler?(distance)
