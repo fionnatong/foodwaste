@@ -60,7 +60,7 @@ struct AddFoodItem: View {
                         set: { [viewModel] in viewModel.updateQuantity($0) }
                     ))
                     .padding(.bottom, 24)
-                    Input(label: "Weight per item",  placeholder: "Enter the weight of the food", text: .init(
+                    Input(label: "Weight per item (in grams)",  placeholder: "Enter the weight of the food", text: .init(
                         get: { [viewModel] in viewModel.foodItem.weight },
                         set: { [viewModel] in viewModel.updateWeight($0) }
                     ))

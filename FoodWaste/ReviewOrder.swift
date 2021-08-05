@@ -62,7 +62,7 @@ struct ReviewOrder: View {
 
 struct ReviewOrder_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewOrder(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), selectedFoodItems: ["1234"], selectedDate: Date())
+        ReviewOrder(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12000", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), selectedFoodItems: ["1234"], selectedDate: Date())
     }
 }
 
@@ -154,7 +154,7 @@ struct ReviewSelecedItems: View {
                         }
 
                         HStack {
-                            Text("\(item.weight.isEmpty ? "No weight specified" : item.weight) • \(item.halal ? "Halal" : "Non-halal")")
+                            Text("\(item.weight.isEmpty ? "No weight specified" : FormatHelper.getWeightInKilograms(weight: item.weight))kg • \(item.halal ? "Halal" : "Non-halal")")
                                 .font(CustomFont.caption)
                                 .foregroundColor(Color("gray-two"))
                             Spacer()
@@ -212,9 +212,18 @@ struct ReviewCollectionDate: View {
                         .font(CustomFont.headerFour)
                         .foregroundColor(Color.black)
                         .padding(.bottom, 8)
-                    Text("\(formatOperatingHours(startTime: basket.business.startTime, endTime: basket.business.endTime))")
-                        .font(CustomFont.bodyRegular)
-                        .foregroundColor(Color.black)
+                    
+                    HStack {
+                        Text(basket.business.startTime, style: .time)
+                            .font(CustomFont.bodyRegular)
+                            .foregroundColor(Color.black)
+                        Text("-")
+                            .font(CustomFont.bodyRegular)
+                            .foregroundColor(Color.black)
+                        Text(basket.business.endTime, style: .time)
+                            .font(CustomFont.bodyRegular)
+                            .foregroundColor(Color.black)
+                    }
                 }
                 .padding(.bottom, 20)
             }
@@ -231,7 +240,7 @@ struct ReviewCollectionDate: View {
 func getTotalWeight (items: [FoodItem]) -> String {
     var totalWeight: Float = 0.0;
     items.forEach { (item) in
-        totalWeight = totalWeight + ((item.weight as NSString).floatValue * Float(item.quantity));
+        totalWeight = totalWeight + ((item.weight as NSString).floatValue * Float(item.quantity) / 1000);
     }
     
     return String(totalWeight)
@@ -241,14 +250,5 @@ func formatCollectionDate (inputDate: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "EEEE, d MMMM yyyy"
     return formatter.string(from: inputDate)
-}
-
-func formatOperatingHours (startTime: Date, endTime: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mma"
-    formatter.amSymbol = "am"
-    formatter.pmSymbol = "pm"
-    
-    return "\(formatter.string(from: startTime)) - \(formatter.string(from: endTime))"
 }
 

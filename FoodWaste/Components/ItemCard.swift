@@ -26,7 +26,7 @@ struct ItemCard: View {
                 .padding(.trailing, 8)
                 
                 HStack {
-                    Text("\(item.weight.isEmpty ? "No weight specified" : item.weight) • \(item.halal ? "Halal" : "Non-halal")")
+                    Text("\(item.weight.isEmpty ? "No weight specified" : FormatHelper.getWeightInKilograms(weight: item.weight))kg • \(item.halal ? "Halal" : "Non-halal")")
                         .font(CustomFont.caption)
                         .foregroundColor(Color("gray-two"))
                 }
@@ -54,7 +54,7 @@ struct ItemCard: View {
 struct ItemCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111"))
+            ItemCard(item: FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "120", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111"))
         }
     }
 }

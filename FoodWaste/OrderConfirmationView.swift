@@ -60,8 +60,17 @@ struct OrderConfirmationView: View {
                                 .font(CustomFont.bodyTwoRegular)
                             Text("\(formatCollectionDate(inputDate: selectedDate))")
                                 .font(CustomFont.headerFour)
-                            Text("\(formatOperatingHours(startTime: basket.business.startTime, endTime: basket.business.endTime))")
-                                .font(CustomFont.headerFour)
+                            HStack {
+                                Text(basket.business.startTime, style: .time)
+                                    .font(CustomFont.bodyRegular)
+                                    .foregroundColor(Color.black)
+                                Text("-")
+                                    .font(CustomFont.bodyRegular)
+                                    .foregroundColor(Color.black)
+                                Text(basket.business.endTime, style: .time)
+                                    .font(CustomFont.bodyRegular)
+                                    .foregroundColor(Color.black)
+                            }
                         }
                         .padding(.bottom, 16)
                     }
@@ -93,6 +102,6 @@ struct OrderConfirmationView: View {
 
 struct OrderConfirmationView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderConfirmationView(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), totalWeight: "12", selectedDate: Date())
+        OrderConfirmationView(basket: FoodBasket(business: BusinesssDetailsModel(id: "12345", bizName: "Business Name", uenNum: "12345", bizAdd: "My address", postalCode: "611138", monAvailable: true, tueAvailable: false, wedAvailable: true, thursAvailable: false, friAvailable: true, satAvailable: false, sunAvailable: true, typesOfItemsSold: ["Cereal"], startTime: Date(), endTime: Date()), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries", quantity: 1, weight: "12000", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "1 - 5 days", distToBusiness: "1.2"), totalWeight: "12", selectedDate: Date())
     }
 }
