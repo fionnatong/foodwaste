@@ -37,7 +37,7 @@ struct ReviewOrder: View {
                         .padding(.bottom, 16)
                         
                     
-                    ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems)
+                    ReviewCollectionDate(business: business, foodItems: foodItems, selectedFoodItems: selectedFoodItems, selectedDate: selectedDate)
                 }
                 .padding(.horizontal, 16)
             }
@@ -178,6 +178,7 @@ struct ReviewCollectionDate: View {
     var business: BusinesssDetailsModel
     var foodItems: [FoodItem]
     var selectedFoodItems: Set = Set<String>()
+    var selectedDate: Date
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -196,7 +197,7 @@ struct ReviewCollectionDate: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("Friday, 6 August 2021")
+                    Text("\(formatDate(inputDate: selectedDate))")
                         .font(CustomFont.headerFour)
                         .foregroundColor(Color.black)
                         .padding(.bottom, 8)
@@ -223,4 +224,10 @@ func getTotalWeight (items: [FoodItem]) -> String {
     }
     
     return String(totalWeight)
+}
+
+func formatDate (inputDate: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "EEEE, d MMMM yyyy"
+    return formatter.string(from: inputDate)
 }
