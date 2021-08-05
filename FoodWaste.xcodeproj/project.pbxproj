@@ -45,6 +45,7 @@
 		8F8CC70926BA2A1E0073DC08 /* CoordinatesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CC70826BA2A1D0073DC08 /* CoordinatesHelper.swift */; };
 		8F8F049326B77B4A00EE056D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */; };
 		8FCBB5CB26BB0F4B003C8E96 /* FilterModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCBB5CA26BB0F4B003C8E96 /* FilterModal.swift */; };
+		8FCBB5D026BB6C0B003C8E96 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCBB5CF26BB6C0B003C8E96 /* DoubleExtension.swift */; };
 		8FFF091826BA4C790006937C /* FoodBasketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */; };
 		8FFF092E26BA7FBE0006937C /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF092D26BA7FBE0006937C /* Dropdown.swift */; };
 		8FFF093226BADAA30006937C /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF093126BADAA30006937C /* BusinessCard.swift */; };
@@ -93,6 +94,7 @@
 		8F8CC70826BA2A1D0073DC08 /* CoordinatesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesHelper.swift; sourceTree = "<group>"; };
 		8F8F049226B77B4A00EE056D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8FCBB5CA26BB0F4B003C8E96 /* FilterModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModal.swift; sourceTree = "<group>"; };
+		8FCBB5CF26BB6C0B003C8E96 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		8FFF091726BA4C790006937C /* FoodBasketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBasketsViewModel.swift; sourceTree = "<group>"; };
 		8FFF092D26BA7FBE0006937C /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		8FFF093126BADAA30006937C /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				23812BFD26B9A6A7001DA8C6 /* EncodableExtension.swift */,
+				8FCBB5CF26BB6C0B003C8E96 /* DoubleExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				8FCBB5CB26BB0F4B003C8E96 /* FilterModal.swift in Sources */,
 				8F33A3FF26B79DE800B9C01C /* OnboardingComplete.swift in Sources */,
 				8FFF092E26BA7FBE0006937C /* Dropdown.swift in Sources */,
+				8FCBB5D026BB6C0B003C8E96 /* DoubleExtension.swift in Sources */,
 				8FFF093526BAE1EF0006937C /* ReviewOrder.swift in Sources */,
 				6AAE1DAE26BAFDAE00C3E209 /* OrderConfirmationView.swift in Sources */,
 				8F33A42E26B7FD4B00B9C01C /* (null) in Sources */,

@@ -9,31 +9,27 @@ import SwiftUI
 import CoreLocation
 
 struct CoordinatesHelper {
-    func getCoordinate( addressString : String,
-                        completionHandler: @escaping(_ coordinate: CLLocationCoordinate2D, _ error: NSError?) -> Void ) {
+    static func getCoordinate( addressString : String,
+                        completionHandler: @escaping(_ coordinate: CLLocationCoordinate2D?, _ hasError: Bool) -> Void ) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressString) { (placemarks, error) in
             if error == nil {
                 if let placemark = placemarks?[0] {
                     let location = placemark.location!
                         
-                    completionHandler(location.coordinate, nil)
+                    completionHandler(location.coordinate, false)
                     return
                 }
             }
                 
-            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+            completionHandler(nil, true)
         }
     }
+    
+    static func getDistance(pointOne: CLLocationCoordinate2D, pointTwo: CLLocationCoordinate2D) -> Double {
+        let locationOne = CLLocation(latitude: pointOne.latitude, longitude: pointOne.longitude)
+        let locationTwo = CLLocation(latitude: pointTwo.latitude, longitude: pointTwo.longitude)
+        // distance is in meters
+        return locationOne.distance(from: locationTwo) / 1000
+    }
 }
-
-// usage
-//getCoordinate(addressString: recipient.postalCode, completionHandler: {(coordinate, error) -> Void in
-//    print("coordinate: \(coordinate)")
-//
-//
-//    if error != nil {
-//        print("error: \(String(describing: error))")
-//    }
-//
-//})

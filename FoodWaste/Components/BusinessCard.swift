@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct BusinessCard: View {
     var basket: FoodBasket
@@ -28,7 +29,7 @@ struct BusinessCard: View {
                 .padding(.trailing, 8)
                 
                 HStack {
-                    Text("\(basket.foodItems.count) food items • 0.80 km")
+                    Text("\(basket.foodItems.count) food items • \(basket.distToBusiness) km")
                         .font(CustomFont.caption)
                         .foregroundColor(Color("gray-two"))
                     Spacer()
@@ -58,7 +59,7 @@ struct BusinessCard: View {
 struct BusinessCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BusinessCard(basket: FoodBasket(business: BusinesssDetailsModel(bizName: "Company 1"), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries",quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "10 - 15 days"))
+            BusinessCard(basket: FoodBasket(business: BusinesssDetailsModel(bizName: "Company 1"), foodItems: [FoodItem(id: "1234", name: "Royal Rice", type: "Groceries",quantity: 1, weight: "12kg", halal: false, expiry: Date(timeIntervalSinceNow: 864000), bizUen: "112233E", postalCode: "650111")], expiryRange: "10 - 15 days", distToBusiness: "0.80"))
         }
     }
 }
