@@ -33,17 +33,21 @@ struct OrderConfirmationView: View {
                         .padding(.top, 16)
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Address")
-                                .font(CustomFont.bodyTwoRegular)
-                            Text("\(basket.business.bizName)")
-                                .font(CustomFont.headerFour)
-                            Text("\(basket.business.bizAdd)")
-                                .font(CustomFont.headerFour)
-                                .fixedSize(horizontal: false, vertical: true)
-                                
+                        HStack {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Address")
+                                    .font(CustomFont.bodyTwoRegular)
+                                Text("\(basket.business.bizName)")
+                                    .font(CustomFont.headerFour)
+                                Text("\(basket.business.bizAdd)")
+                                    .font(CustomFont.headerFour)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    
+                            }
+                            Spacer()
                         }
-//                        
+                        
+                       
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Distance from Organisation")
                                 .font(CustomFont.bodyTwoRegular)
