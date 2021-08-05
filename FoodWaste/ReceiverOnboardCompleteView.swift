@@ -17,7 +17,7 @@ struct ReceiverOnboardCompleteView: View {
                 
                 Image("success")
                 
-                Text("Begin the mission by viewing and adopting the latest food donations in the Food Shelf.")
+                Text("Begin the mission by viewing and adopting the latest food donations in the Food baskets.")
                     .font(CustomFont.bodyRegular)
                     .multilineTextAlignment(.center)
                 
@@ -27,7 +27,7 @@ struct ReceiverOnboardCompleteView: View {
                     NavigationLink(destination: FoodBasketsView(), isActive: $completeOnboarding) {
                         EmptyView()
                     }
-                    Button("Go to Food Shelf") {
+                    Button("Go to Food baskets") {
                         UserDefaults.standard.set(true, forKey: "IsOnboarded")
                         self.completeOnboarding = true
                     }
